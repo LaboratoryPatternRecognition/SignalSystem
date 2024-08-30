@@ -1,0 +1,946 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Convolution &#8212; Dr.Hadi Sadoghi Yazdi</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SAS/convolution';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contact Me" href="../Contact_Me.html" />
+    <link rel="prev" title="Signal and System" href="../SignalSystemStart.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../SignalSystemStart.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Hadi_Sadoghi_Yazdi.png" class="logo__image only-light" alt="Dr.Hadi Sadoghi Yazdi - Home"/>
+    <script>document.write(`<img src="../_static/Hadi_Sadoghi_Yazdi.png" class="logo__image only-dark" alt="Dr.Hadi Sadoghi Yazdi - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../SignalSystemStart.html">
+                    Signal and System
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Convolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Contact_Me.html">Contact Me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../About_Me.html">About Me</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/h-sadoghi/dr-sadoghi.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/h-sadoghi/dr-sadoghi.git/issues/new?title=Issue%20on%20page%20%2FSAS/convolution.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/SAS/convolution.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Convolution</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformation-of-the-independent-variable">Transformation of the  Independent Variable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodic-signals">Periodic Signals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#even-and-odd-signal">Even and Odd Signal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#odd-signal">Odd Signal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#even-signal">Even Signal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-number">Complex number</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartesian-form">Cartesian form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polar-form">Polar form</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-discrete-unit-impulse-and-unit-step-functions">The Discrete Unit Impulse and Unit Step Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continuous-unit-impulse-and-unit-step-functions">The Continuous Unit Impulse and Unit Step Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-system-propeties">Basic System Propeties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#systems-with-and-without-memory">Systems with and without Memory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-invariant">Time Invariant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linearity">Linearity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-representation-of-discrete-time-signals-in-terms-of-impulses">The Representation of Discrete-Time Signals in Terms of Impulses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-discrete-time-unit-impulse-response-and-the-convolution-sum-representation-of-lti-systems">The Discrete-Time Unit Impulse Response and the Convolution-Sum Representation of LTI Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-response-of-linear-system-to-unit-impulse">Example of Response of Linear System to Unit Impulse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#response-of-linear-system-and-time-invariant-to-unit-impulse">Response of Linear System and Time Invariant to Unit Impulse</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-interpretation-of-convolution">Two Interpretation of Convolution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-interpretation">First Interpretation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-interpretation">Second Interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-convolution">2D Convolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separable-convolution-2d">Separable Convolution 2D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-correlation">Cross Correlation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-1">Convolution 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-of-the-convolution-output">Shape of the Convolution Output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-convolution-as-matrix-multiplication">2D Convolution as Matrix Multiplication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-convolution">1) Discrete convolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-im2col">2) Using im2col</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-doubly-block-circulant-matrix">3) Using Doubly Block Circulant Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-in-rgb-images">Convolution in RGB Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transpose-convolution">Transpose Convolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x1-convolution-network-in-network">1x1 Convolution (Network-in-Network)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dilated-convolutions">Dilated Convolutions</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="convolution">
+<h1>Convolution<a class="headerlink" href="#convolution" title="Link to this heading">#</a></h1>
+<p>The <strong>signals</strong>, which are functions of one or more independent variables, contain information about the behavior or nature of some phenomenon (i.e. voltages and currents as a function of time in an electrical circuit are examples of signals) , whereas the <strong>systems</strong> respond to particular signals by producing other signals or some desired behavior (a circuit is itself an example of a system, which in this case responds to applied voltages and currents)</p>
+<p>In the many contexts in which signals and systems arise, there are a variety of prob-
+lems and questions that are of importance. In some cases, we are presented with a specific
+system and are interested in characterizing it in detail to understand how it will respond to
+various inputs.</p>
+<p>Examples include the analysis of a circuit in order to quantify its response
+to different voltage and current sources and the determination of an aircraft’s response
+characteristics both to pilot commands and to wind gusts.</p>
+<section id="transformation-of-the-independent-variable">
+<h2>Transformation of the  Independent Variable<a class="headerlink" href="#transformation-of-the-independent-variable" title="Link to this heading">#</a></h2>
+<p>It is often of interest to determine the effect of transforming the independent variable
+of a given signal <span class="math notranslate nohighlight">\(x(t)\)</span> to obtain a signal of the form <span class="math notranslate nohighlight">\(y(t)=x(\alpha t + \beta)\)</span>, where <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are given
+numbers.</p>
+<p>Such a transformation of the independent variable preserves the shape of <span class="math notranslate nohighlight">\(x(t)\)</span>,
+except that the resulting signal may be</p>
+<p>linearly stretched if <span class="math notranslate nohighlight">\(|\alpha|\)</span>  &lt; 1,</p>
+<p>linearly compressed if <span class="math notranslate nohighlight">\(|\alpha|\)</span>  &gt; 1,</p>
+<p>reversed in time if <span class="math notranslate nohighlight">\(\alpha &lt; 0\)</span>,</p>
+<p>and shifted in time if <span class="math notranslate nohighlight">\(\beta\)</span> is nonzero.</p>
+<p>To get the new signal, we always first apply <span class="math notranslate nohighlight">\(\beta\)</span>, if <span class="math notranslate nohighlight">\(\beta&gt;0\)</span>, we shift to the left, if <span class="math notranslate nohighlight">\(\beta&lt;0\)</span> we shift to the right, then we apply <span class="math notranslate nohighlight">\(\alpha\)</span></p>
+<p><img alt="lti1" src="../_images/lti.jpg" /></p>
+</section>
+<section id="periodic-signals">
+<h2>Periodic Signals<a class="headerlink" href="#periodic-signals" title="Link to this heading">#</a></h2>
+<p>An important class of signals is the class of periodic signals. A periodic continuous-time signal <span class="math notranslate nohighlight">\(x(t)\)</span> has the property that there is a positive value of <span class="math notranslate nohighlight">\(T\)</span> for which: <span class="math notranslate nohighlight">\(x(t)=x(t+T)\)</span>.</p>
+<p>In other words, a periodic signal has the property that it is unchanged by a
+time shift of <span class="math notranslate nohighlight">\(T\)</span>. In this case, we say that <span class="math notranslate nohighlight">\(x(t)\)</span> is periodic with period <span class="math notranslate nohighlight">\(T\)</span></p>
+<p><img alt="periodic1" src="../_images/periodic.jpg" /></p>
+</section>
+<section id="even-and-odd-signal">
+<h2>Even and Odd Signal<a class="headerlink" href="#even-and-odd-signal" title="Link to this heading">#</a></h2>
+<section id="odd-signal">
+<h3>Odd Signal<a class="headerlink" href="#odd-signal" title="Link to this heading">#</a></h3>
+<p>for continous signals:</p>
+<p><span class="math notranslate nohighlight">\(x(-t)=x(t)\)</span></p>
+<p>for discrete signals:</p>
+<p><span class="math notranslate nohighlight">\(x[-n]=x[n]\)</span></p>
+</section>
+<section id="even-signal">
+<h3>Even Signal<a class="headerlink" href="#even-signal" title="Link to this heading">#</a></h3>
+<p>for continous signals:</p>
+<p><span class="math notranslate nohighlight">\(x(-t)=-x(t)\)</span></p>
+<p>for discrete signals:</p>
+<p><span class="math notranslate nohighlight">\(x[-n]=-x[n]\)</span></p>
+<p>any signal can be broken into a sum of two signals, one of which is even and one of which is odd:</p>
+<p><span class="math notranslate nohighlight">\(E\{x(t)\}=\frac{1}{2}[x(t)+x(-t)]\)</span></p>
+<p><span class="math notranslate nohighlight">\(O\{x(t)\}=\frac{1}{2}[x(t)-x(-t)]\)</span></p>
+<p><img alt="even_odd1" src="../_images/even_odd.jpg" /></p>
+</section>
+</section>
+<section id="complex-number">
+<h2>Complex number<a class="headerlink" href="#complex-number" title="Link to this heading">#</a></h2>
+<section id="cartesian-form">
+<h3>Cartesian form<a class="headerlink" href="#cartesian-form" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(z=x+iy\)</span></p>
+</section>
+<section id="polar-form">
+<h3>Polar form<a class="headerlink" href="#polar-form" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(z=re^{i\varphi}=r(cos(\varphi) + isin(\varphi))\)</span></p>
+<p><span class="math notranslate nohighlight">\({\displaystyle r=|z|={\sqrt {x^{2}+y^{2}}}.}\)</span></p>
+<p><span class="math notranslate nohighlight">\({\displaystyle \varphi =\arg(x+yi)={\begin{cases}2\arctan \left({\dfrac {y}{{\sqrt {x^{2}+y^{2}}}+x}}\right)&amp;{\text{if }}y\neq 0{\text{ or }}x&gt;0,\\\pi &amp;{\text{if }}x&lt;0{\text{ and }}y=0,\\{\text{undefined}}&amp;{\text{if }}x=0{\text{ and }}y=0.\end{cases}}}\)</span></p>
+</section>
+</section>
+<section id="the-discrete-unit-impulse-and-unit-step-functions">
+<h2>The Discrete Unit Impulse and Unit Step Functions<a class="headerlink" href="#the-discrete-unit-impulse-and-unit-step-functions" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\delta (n)={\begin{cases}+1 ,&amp;n=0\\0,&amp;n\neq 0\end{cases}}\)</span></p>
+<p><img alt="unit_impulse1" src="../_images/unit_impulse.jpg" /></p>
+<p><span class="math notranslate nohighlight">\(u(n)={\begin{cases}0 ,&amp;n&lt;0\\1,&amp;n\ge 0\end{cases}}\)</span></p>
+<p><img alt="unit_step1" src="../_images/unit_step.jpg" /></p>
+<p><span class="math notranslate nohighlight">\(\delta[n]=u[n]-u[n-1]\)</span></p>
+<p><span class="math notranslate nohighlight">\(u[n]=\sum_{m=-\infty}^{n} \delta[m]\)</span></p>
+<p>Example:</p>
+<p><span class="math notranslate nohighlight">\(u[-1]= \delta[-\infty]+...   + \delta[-2]+\delta[-1]=0\)</span></p>
+<p><span class="math notranslate nohighlight">\(u[2]=\delta[-\infty]+...+ \delta[-2]+ \delta[-1]+ \delta[0] + \delta[1]+\delta[2]=1\)</span></p>
+<p>By changing the variable of summation from <span class="math notranslate nohighlight">\(m\)</span> to <span class="math notranslate nohighlight">\(k = n - m\)</span>, we would have:</p>
+<p><span class="math notranslate nohighlight">\(m = n -k \)</span></p>
+<p><span class="math notranslate nohighlight">\(-\infty &lt;m &lt; n \)</span></p>
+<p><span class="math notranslate nohighlight">\(-n &lt;-m &lt; +\infty \)</span></p>
+<p><span class="math notranslate nohighlight">\(0 &lt;n-m &lt; n+\infty \)</span></p>
+<p><span class="math notranslate nohighlight">\(u[n]=\sum_{k=0}^{+\infty} \delta[n-k]\)</span></p>
+<p><span class="math notranslate nohighlight">\(n&lt;0\)</span>
+<img src='images/delta_n-k+.jpg' /></p>
+<p><span class="math notranslate nohighlight">\(n&gt;0\)</span>
+<img src='images/delta_n-k-.jpg' /></p>
+</section>
+<section id="the-continuous-unit-impulse-and-unit-step-functions">
+<h2>The Continuous Unit Impulse and Unit Step Functions<a class="headerlink" href="#the-continuous-unit-impulse-and-unit-step-functions" title="Link to this heading">#</a></h2>
+<p>Continuous unit Step function:</p>
+<p><span class="math notranslate nohighlight">\(u(t)={\begin{cases}+1 ,&amp;t&gt;0\\0,&amp;t&lt; 0\end{cases}}\)</span></p>
+<p>to the relationship between the discrete-time unit impulse and step functions. In particular, the continuous-time unit step is the running integral of the unit impulse:</p>
+<p><span class="math notranslate nohighlight">\(u(t)\int _{-\infty}^{t}\delta(\tau)d\tau   \)</span></p>
+<p>or by changing the variable of integration from <span class="math notranslate nohighlight">\(\tau\)</span> to <span class="math notranslate nohighlight">\(\sigma = t- \tau\)</span></p>
+<p><span class="math notranslate nohighlight">\(\tau = t- \sigma\)</span></p>
+<p><span class="math notranslate nohighlight">\(u(t)=\int _{-\infty}^{t}\delta(\tau)d\tau = \int _{+\infty}^{0}\delta(t-\sigma)(-d\sigma)= \int _{0}^{+\infty}\delta(t-\sigma)d\sigma\)</span></p>
+<p><span class="math notranslate nohighlight">\(\delta(t)=\frac{du(t)}{dt}\)</span></p>
+</section>
+<section id="basic-system-propeties">
+<h2>Basic System Propeties<a class="headerlink" href="#basic-system-propeties" title="Link to this heading">#</a></h2>
+</section>
+<section id="systems-with-and-without-memory">
+<h2>Systems with and without Memory<a class="headerlink" href="#systems-with-and-without-memory" title="Link to this heading">#</a></h2>
+<p>A system is said to be memory less if its output for each value of the independent variable
+at a given time is dependent only on the input at that same time</p>
+</section>
+<section id="time-invariant">
+<h2>Time Invariant<a class="headerlink" href="#time-invariant" title="Link to this heading">#</a></h2>
+<p>Conceptually, a system is time invariant if the behavior and characteristics of the system
+are fixed over time. For example, a <span class="math notranslate nohighlight">\(RC\)</span> circuit is time invariant if the
+resistance and capacitance values <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(C\)</span> are constant over time. We would expect to
+get the same results from an experiment with this circuit today as we would if we ran the
+identical experiment tomorrow.</p>
+<p>a system is time invariant if a time shift in the input signal results in an identical time shift in the output signal. That is, if <span class="math notranslate nohighlight">\(y[n]\)</span> is the output of a discrete-time, time-invariant system when <span class="math notranslate nohighlight">\(x[n]\)</span> is the input, then <span class="math notranslate nohighlight">\(y [n- n_0 ]\)</span> is the output when <span class="math notranslate nohighlight">\(x [n-n_0 ]\)</span> is applied.</p>
+</section>
+<section id="linearity">
+<h2>Linearity<a class="headerlink" href="#linearity" title="Link to this heading">#</a></h2>
+<p>If an input consists of the weighted sum of several signals,then the output is the superposition-that is, the weighted sum-of the responses of the
+system to each of those signals. let <span class="math notranslate nohighlight">\(y_1(t)\)</span> be the response of a continuous-
+time system to an input <span class="math notranslate nohighlight">\(x_1(t)\)</span>, and let <span class="math notranslate nohighlight">\(y_2(t)\)</span> be the output corresponding to the input <span class="math notranslate nohighlight">\(x_2(t)\)</span>.</p>
+<p>Then the system is linear if:</p>
+<ol class="arabic simple">
+<li><p>The response to <span class="math notranslate nohighlight">\(x_1 (t)+ x_2(t)\)</span> is <span class="math notranslate nohighlight">\(y_1(t)\)</span> + <span class="math notranslate nohighlight">\(y_2(t)\)</span> (additivity property).</p></li>
+<li><p>The response to <span class="math notranslate nohighlight">\(ax_1(t)\)</span> is <span class="math notranslate nohighlight">\(ay_1(t)\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is any complex constant (scaling or homogeneity).</p></li>
+</ol>
+<p>The two properties defining a linear system can be combined into a single statement:</p>
+<p>continuous time: <span class="math notranslate nohighlight">\(ax_1 (t) + bx2(t) \rightarrow ay_1(t) + by_2(t)\)</span>,</p>
+<p>discrete time: <span class="math notranslate nohighlight">\(ax_1[n] + bx_2[n] \rightarrow ay_1[n] + by_2[n]\)</span>.</p>
+<p>it is straightforward to show from the definition of linearity that if <span class="math notranslate nohighlight">\(x_k[n]\)</span>, <span class="math notranslate nohighlight">\(k = 1, 2, 3, ... ,\)</span> are a set of inputs to a discrete-time linear system with corresponding outputs <span class="math notranslate nohighlight">\(y_k[n], k = 1, 2, 3, ...\)</span> , then the response to a linear combination of these inputs given by:</p>
+<p><span class="math notranslate nohighlight">\(x[n]=\sum_{k}a_{k}x_k[n]=a_{1}x_1[n]+a_{2}x_2[n]+a_{3}x_k[3]+...\)</span></p>
+<p>is:</p>
+<p><span class="math notranslate nohighlight">\(y[n]=\sum_{k}a_{k}y_k[n]=a_{1}y_1[n]+a_{2}y_2[n]+a_{3}y_k[3]+...\)</span></p>
+<p>This very important fact is known as the <strong>superposition property</strong></p>
+</section>
+<section id="the-representation-of-discrete-time-signals-in-terms-of-impulses">
+<h2>The Representation of Discrete-Time Signals in Terms of Impulses<a class="headerlink" href="#the-representation-of-discrete-time-signals-in-terms-of-impulses" title="Link to this heading">#</a></h2>
+<p>The key idea in visualizing how the discrete-time unit impulse can be used to construct
+any discrete-time signal is to think of a discrete-time signal as a sequence of individual impulses. For example consider the following signal:</p>
+<p><img alt="discrete_time_signals1" src="../_images/discrete_time_signals.jpg" /></p>
+<p>It can be depicted as five time-shifted, scaled unit impulse sequences, where the scaling on each impulse equals the value of <span class="math notranslate nohighlight">\(x[n]\)</span> at the particular instant the unit sample occurs.</p>
+<p><img alt="representation_of_discrete_time_signals_in_terms_of_impulses1" src="../_images/representation_of_discrete_time_signals_in_terms_of_impulses.jpg" /></p>
+<p><span class="math notranslate nohighlight">\(x[-1]\delta[n+1]=
+\left\{\begin{matrix}
+x[-1] &amp; n=-1 \\
+0 &amp; n\neq-1 \\
+\end{matrix}\right.\)</span></p>
+<p><span class="math notranslate nohighlight">\(x[0]\delta[n]=
+\left\{\begin{matrix}
+x[0] &amp; n=0 \\
+0 &amp; n\neq0 \\
+\end{matrix}\right.\)</span></p>
+<p><span class="math notranslate nohighlight">\(x[1]\delta[n-1]=
+\left\{\begin{matrix}
+x[1] &amp; n=1 \\
+0 &amp; n\neq1 \\
+\end{matrix}\right.\)</span></p>
+<p><span class="math notranslate nohighlight">\(x[n]=...+ x[-3]\delta[n+3]+x[-2]\delta[n+2]+x[-1]\delta[n+1]+x[0]\delta[n]+x[1]\delta[n-1]+x[2]\delta[n-2]+x[3]\delta[n-3]+...  \)</span></p>
+<p>so it can be written as:</p>
+<p><span class="math notranslate nohighlight">\(x[n]=\sum_{k=-\infty}^{+\infty}x[k]\delta[n-k]\)</span>
+which is <strong>sifting property</strong> of the discrete-time unit impulse</p>
+<p>This corresponds to the representation of an arbitrary sequence as a linear combination of
+shifted unit impulses <span class="math notranslate nohighlight">\(\delta[n- k]\)</span>, where the weights in this linear combination are <span class="math notranslate nohighlight">\(x[k]\)</span>.</p>
+</section>
+<section id="the-discrete-time-unit-impulse-response-and-the-convolution-sum-representation-of-lti-systems">
+<h2>The Discrete-Time Unit Impulse Response and the Convolution-Sum Representation of LTI Systems<a class="headerlink" href="#the-discrete-time-unit-impulse-response-and-the-convolution-sum-representation-of-lti-systems" title="Link to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(h_k[n]\)</span> denote the response of the linear system to the shifted unit impulse <span class="math notranslate nohighlight">\(\delta[n - k]\)</span>, Then, from the superposition property for a linear system, the response <span class="math notranslate nohighlight">\(y[n]\)</span> of the linear system to the input <span class="math notranslate nohighlight">\(x[n]=\sum_{k=-\infty}^{+\infty}x[k]\delta[n-k]\)</span>
+is simply the weighted linear combination of these basic responses, the output <span class="math notranslate nohighlight">\(y[n]\)</span>
+can be expressed as:</p>
+<p><span class="math notranslate nohighlight">\(y[n]=\sum_{k=-\infty}^{+\infty}x[k]h_k[n]\)</span></p>
+<section id="example-of-response-of-linear-system-to-unit-impulse">
+<h3>Example of Response of Linear System to Unit Impulse<a class="headerlink" href="#example-of-response-of-linear-system-to-unit-impulse" title="Link to this heading">#</a></h3>
+<p>The following signal <span class="math notranslate nohighlight">\(x[n]\)</span> is applied as the input to a linear system (<strong>not necessarily time/ shift invariant</strong>)</p>
+<p><img alt="input1" src="../_images/input.jpg" /></p>
+<img src='images/input_delta_responses.jpg'></section>
+<section id="response-of-linear-system-and-time-invariant-to-unit-impulse">
+<h3>Response of Linear System and Time Invariant to Unit Impulse<a class="headerlink" href="#response-of-linear-system-and-time-invariant-to-unit-impulse" title="Link to this heading">#</a></h3>
+<p>In general, of course, the responses <span class="math notranslate nohighlight">\(h_k[n]\)</span> need not be related to each other for differ
+ent values of <span class="math notranslate nohighlight">\(k\)</span>. However, if the linear system is also <strong>time invariant</strong>, then these responses to time-shifted unit impulses are all time-shifted versions of each other. Specifically, since <span class="math notranslate nohighlight">\(\delta[n- k]\)</span> is a time-shifted version of <span class="math notranslate nohighlight">\(\delta[n]\)</span>, the response <span class="math notranslate nohighlight">\(h_k[n]\)</span> is a time-shifted version of <span class="math notranslate nohighlight">\(h_0[n]\)</span> i.e.</p>
+<p><span class="math notranslate nohighlight">\(h_k[n]=h_0[n-k]\)</span></p>
+<p>For notational convenience, we will drop the subscript on <span class="math notranslate nohighlight">\(h_0[n]\)</span> and define the unit impulse (sample) response:</p>
+<p><span class="math notranslate nohighlight">\(h[n]=h_0[n]\)</span></p>
+<p>That is, <span class="math notranslate nohighlight">\(h[n]\)</span> is the output ofthe LTI system when <span class="math notranslate nohighlight">\(\delta[n]\)</span> is the input. Then for an LTI system, the equation</p>
+<p><span class="math notranslate nohighlight">\(y[n]=\sum_{k=-\infty}^{+\infty}x[k]h_k[n]\)</span></p>
+<p>will become:</p>
+<p><span class="math notranslate nohighlight">\(y[n]=\sum_{k=-\infty}^{+\infty}x[k]h[n-k]\)</span></p>
+<p>This result is referred to as the convolution:</p>
+<p><span class="math notranslate nohighlight">\(y[n]=x[n]*h[n]\)</span></p>
+</section>
+</section>
+<section id="two-interpretation-of-convolution">
+<h2>Two Interpretation of Convolution<a class="headerlink" href="#two-interpretation-of-convolution" title="Link to this heading">#</a></h2>
+<section id="first-interpretation">
+<h3>First Interpretation<a class="headerlink" href="#first-interpretation" title="Link to this heading">#</a></h3>
+<p><img alt="lti_input1" src="../_images/lti_input.jpg" /></p>
+<p><span class="math notranslate nohighlight">\(y[n]=x[0]h[n-0]+x[1]h[n-1]=0.5h[n-0]+2h[n-1]\)</span></p>
+<p><img alt="lti_pulse_response1" src="../_images/lti_pulse_response.jpg" /></p>
+</section>
+<section id="second-interpretation">
+<h3>Second Interpretation<a class="headerlink" href="#second-interpretation" title="Link to this heading">#</a></h3>
+<p>Input Signal</p>
+<p><img alt="conv_inter1" src="../_images/convolution_interpretation_input.svg" /></p>
+<p>Reponse of the system to <span class="math notranslate nohighlight">\(\delta\)</span></p>
+<p><img alt="convolution_interpretation_delta_reposne1" src="../_images/convolution_interpretation_delta_reposne.svg" /></p>
+<p><span class="math notranslate nohighlight">\(y[n]=\sum_{k=-\infty}^{+\infty}x[k]h[n-k]\)</span></p>
+<p><span class="math notranslate nohighlight">\(x[k]h[n-k]\)</span></p>
+<p><span class="math notranslate nohighlight">\(n=0\)</span></p>
+<p><span class="math notranslate nohighlight">\(y[0]=...+x[-2]h[2]+x[-1]h[1]+x[0]h[0]+x[1]h[-1] +x[2]h[-2] +x[3]h[-3]+... \)</span></p>
+<p><span class="math notranslate nohighlight">\(h: 3 \qquad 1 \qquad 2 \)</span></p>
+<p><span class="math notranslate nohighlight">\(x: 0\qquad 0\qquad 1\qquad 3\qquad 1\qquad 2\qquad 0\qquad 0\qquad\)</span></p>
+<p><span class="math notranslate nohighlight">\(n=1\)</span></p>
+<p><span class="math notranslate nohighlight">\(y[1]=...+  x[-1]h[2]+ x[0]h[1]+ x[1]h[0]+ x[2]h[-1]+x[3]h[-2]  +... \)</span></p>
+<p><span class="math notranslate nohighlight">\(h: \ \   \qquad 3 \qquad 1 \qquad 2 \)</span></p>
+<p><span class="math notranslate nohighlight">\(x: 0\qquad 0\qquad 1\qquad 3\qquad 1\qquad 2\qquad 0\qquad 0\qquad\)</span></p>
+<p><span class="math notranslate nohighlight">\(n=2\)</span></p>
+<p><span class="math notranslate nohighlight">\(y[2]=...+x[0]h[2] + x[1]h[1] + x[2]h[0]+ x[3]h[-1]+...\)</span></p>
+<p><span class="math notranslate nohighlight">\(h: \ \   \qquad \ \ \qquad 3 \qquad 1 \qquad 2 \)</span></p>
+<p><span class="math notranslate nohighlight">\(x: 0\qquad 0\qquad 1\qquad 3\qquad 1\qquad 2\qquad 0\qquad 0\qquad\)</span></p>
+<p><span class="math notranslate nohighlight">\(y[n]=x[n]*h[n]= [2\quad 7\quad 8\quad 14\quad 5\quad 6]\)</span></p>
+<p>The lenght of convolution response is: <span class="math notranslate nohighlight">\(m+n-1\)</span></p>
+</section>
+</section>
+<section id="d-convolution">
+<h2>2D Convolution<a class="headerlink" href="#d-convolution" title="Link to this heading">#</a></h2>
+<p>By convolving both horizontal and vertical directions in a two-dimensional spatial domain, 2D convolution is simply an expansion of prior 1D convolution. Smoothing, sharpening, and edge detection of images are all common applications for convolution.</p>
+<p>The impulse in 2D space is <span class="math notranslate nohighlight">\(\delta[m, n]\)</span> where m and n is zero and zeros at <span class="math notranslate nohighlight">\(m,n \neq 0\)</span>. The impulse response in 2D is usually called <strong>kernel</strong> or <strong>filter</strong> in image processing.</p>
+<p><img alt="conv2d_delta1" src="../_images/conv2d_delta.jpg" /></p>
+<p><img alt="conv_img10_1" src="../_images/conv_img10.png" /></p>
+<p>2D signal can be written as  sum of scaled and shifted impulse functions:  <span class="math notranslate nohighlight">\(x[m,n]=\sum_{j=-\infty}^{+\infty} \sum_{i=-\infty}^{+\infty} x[i,j]\delta[m-i,nj]\)</span></p>
+<p>The <strong>x-coordinate</strong> is defined here as increasing in the <strong>“right”-direction</strong> ( [column, row]), and the <strong>y-coordinate</strong> is defined as increasing in the <strong>“down”-direction</strong>.</p>
+<p><img alt="x_y_coordinate_1" src="../_images/x_y_coordinate.svg" /></p>
+<p><img src="https://latex.codecogs.com/svg.latex?{\displaystyle \begin{bmatrix}
+x,y   &  x+1,y   & ... & x+n,y  \\
+x,y+1 &  x+2,y+1  & ... & x+n,y+1  \\
+\vdots &  &  \ddots & \vdots \\ 
+ x,y+m  & x+2,y+m  & ... & x+n,y+m  \\
+\end{bmatrix} }" /></p>
+<p>The output of linear and time invariant system can be written by convolution of input signal <span class="math notranslate nohighlight">\(x[m, n]\)</span>, and response to delta function, <span class="math notranslate nohighlight">\(h[m, n]\)</span></p>
+<p><span class="math notranslate nohighlight">\(y[m,n]=x[m,n]*h[m,n]= \sum_{j=-\infty}^{+\infty} \sum_{i=-\infty}^{+\infty} x[i,j]h[m-i,n-j] \)</span></p>
+<p>kernels in 2D are center originated, meaning <span class="math notranslate nohighlight">\(h[0, 0]\)</span> is the center point of a kernel.</p>
+<p><img alt="conv_img11_1" src="../_images/conv_img11.png" /></p>
+<p><span class="math notranslate nohighlight">\(y[1,1]=x[1,1]*h[1,1]= \sum_{j=-\infty}^{+\infty} \sum_{i=-\infty}^{+\infty} x[i,j]h[1-i,1-j]=\\ 
+x[0,0]h[1,1]+x[1,0]h[0,1]+x[2,0]h[-1,1]+\\
+x[0,1]h[1,0]+x[1,1]h[0,0]+x[2,1]h[-1,0]+\\
+x[0,2]h[1,-1]+x[1,2]h[0,-1]+x[2,2]h[-1,-1]\)</span></p>
+<p>Note that the kernel matrix is turned upside down and then mirrored before multiplying the overlapped input data.</p>
+<p><img alt="conv2d_matrix_1" src="../_images/conv2d_matrix.jpg" /></p>
+<p>Refs: <a class="reference external" href="http://www.songho.ca/dsp/convolution/convolution.html#convolution_2d">1</a></p>
+</section>
+<section id="separable-convolution-2d">
+<h2>Separable Convolution 2D<a class="headerlink" href="#separable-convolution-2d" title="Link to this heading">#</a></h2>
+</section>
+<section id="cross-correlation">
+<h2>Cross Correlation<a class="headerlink" href="#cross-correlation" title="Link to this heading">#</a></h2>
+<p>Each output unit is a linear function of localized subset of input units</p>
+<p><img alt="SegmentLocal" src="../_images/no_padding_no_strides.gif" /></p>
+<p><span class="math notranslate nohighlight">\(H[x,y]=\sum_{v=-k}^{k} \sum_{u=-k}^{k} I[x+u,y+v] F[u,v]\)</span></p>
+</section>
+<section id="convolution-1">
+<h2>Convolution 1<a class="headerlink" href="#convolution-1" title="Link to this heading">#</a></h2>
+<p>Refs: <a class="reference external" href="https://github.com/vdumoulin/conv_arithmetic">1</a> <a class="reference external" href="https://theblog.github.io/post/convolution-in-autoregressive-neural-networks/">2</a></p>
+</section>
+<section id="shape-of-the-convolution-output">
+<h2>Shape of the Convolution Output<a class="headerlink" href="#shape-of-the-convolution-output" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(H_{out} =\left \lfloor \frac{ H_{in} +2 \times \text{padding[0]}-\text{dilation[0]} \times(\text{kernel_size}[0]-1)-1}{stride[0]}   +1\right \rfloor\)</span></p>
+<p><span class="math notranslate nohighlight">\(W_{out} =\left \lfloor \frac{ W_{in} +2\times \text{padding[1]}-\text{dilation[1]} \times(\text{kernel_size}[1]-1)-1}{stride[1]}   +1\right \rfloor\)</span></p>
+</section>
+<section id="d-convolution-as-matrix-multiplication">
+<h2>2D Convolution as Matrix Multiplication<a class="headerlink" href="#d-convolution-as-matrix-multiplication" title="Link to this heading">#</a></h2>
+<p>You can write 2D Convolution as Matrix Multiplication. There are several way to do that</p>
+</section>
+<section id="discrete-convolution">
+<h2>1) Discrete convolution<a class="headerlink" href="#discrete-convolution" title="Link to this heading">#</a></h2>
+<p>You should use a <strong>doubly block circulant matrix</strong> which is a special case of <strong>Toeplitz matrix</strong>.</p>
+<p>The following matrix is a Toeplitz matrix:</p>
+<p><span class="math notranslate nohighlight">\(\begin{bmatrix}
+a &amp; b &amp; c &amp; d &amp; e \\
+f &amp; a &amp; b &amp; c &amp; d \\
+g &amp; f &amp; a &amp; b &amp; c \\
+h &amp; g &amp; f &amp; a &amp; b \\
+i &amp; h &amp; g &amp; f &amp; a 
+\end{bmatrix}\)</span></p>
+<p>Toeplitz matrix of a <span class="math notranslate nohighlight">\(n×n\)</span> matrix A is:</p>
+<p><span class="math notranslate nohighlight">\({\displaystyle {\begin{bmatrix}a_{0}&amp;a_{-1}&amp;a_{-2}&amp;\cdots &amp;\cdots &amp;a_{-(n-1)}\\a_{1}&amp;a_{0}&amp;a_{-1}&amp;\ddots &amp;&amp;\vdots \\a_{2}&amp;a_{1}&amp;\ddots &amp;\ddots &amp;\ddots &amp;\vdots \\\vdots &amp;\ddots &amp;\ddots &amp;\ddots &amp;a_{-1}&amp;a_{-2}\\\vdots &amp;&amp;\ddots &amp;a_{1}&amp;a_{0}&amp;a_{-1}\\a_{n-1}&amp;\cdots &amp;\cdots &amp;a_{2}&amp;a_{1}&amp;a_{0}\end{bmatrix}}}\)</span></p>
+<p>If the i,j element of A is denoted <span class="math notranslate nohighlight">\(A_{i,j}\)</span>, then we have</p>
+<p><span class="math notranslate nohighlight">\({\displaystyle A_{i,j}=A_{i+1,j+1}=a_{i-j}.\ }\)</span></p>
+<p><span class="math notranslate nohighlight">\({\displaystyle y=k\ast x={\begin{bmatrix}k_{1}&amp;0&amp;\cdots &amp;0&amp;0\\k_{2}&amp;k_{1}&amp;&amp;\vdots &amp;\vdots \\k_{3}&amp;k_{2}&amp;\cdots &amp;0&amp;0\\\vdots &amp;k_{3}&amp;\cdots &amp;k_{1}&amp;0\\k_{m-1}&amp;\vdots &amp;\ddots &amp;k_{2}&amp;k_{1}\\k_{m}&amp;k_{m-1}&amp;&amp;\vdots &amp;k_{2}\\0&amp;k_{m}&amp;\ddots &amp;k_{m-2}&amp;\vdots \\0&amp;0&amp;\cdots &amp;k_{m-1}&amp;k_{m-2}\\\vdots &amp;\vdots &amp;&amp;k_{m}&amp;k_{m-1}\\0&amp;0&amp;0&amp;\cdots &amp;k_{m}\end{bmatrix}}{\begin{bmatrix}x_{1}\\x_{2}\\x_{3}\\\vdots \\x_{n}\end{bmatrix}}}\)</span></p>
+<p>Refs: <a class="reference external" href="https://en.wikipedia.org/wiki/Toeplitz_matrix#Discrete_convolution">1</a></p>
+</section>
+<section id="using-im2col">
+<h2>2) Using im2col<a class="headerlink" href="#using-im2col" title="Link to this heading">#</a></h2>
+<p>Suppose we have a single channel 4 x 4 image, X, and its pixel values are as follows:</p>
+<p><img alt="im2col_1" src="../_images/im2col_1.png" /></p>
+<p>and our weight is:</p>
+<p><span class="math notranslate nohighlight">\(\begin{bmatrix}
+1 &amp;2 \\ 
+ 3&amp; 4
+\end{bmatrix}\)</span></p>
+<p>This means that there will be 9 2 x 2 image patches that will be element-wise multiplied with the matrix W, like so:</p>
+<p><img alt="im2col_2_1" src="../_images/im2col_2.png" /></p>
+<p>These image patches can be represented as 4-dimensional column vectors and concatenated to form a single 4 x 9 matrix, P, like so:</p>
+<p><img alt="conv2d_matrix_1" src="../_images/conv2d_matrix.jpg" />
+To perform the convolution, we first matrix multiply K with P to get a 9-dimensional row vector (1 x 9 matrix) which gives us:</p>
+<p><img alt="im2col_4_1" src="../_images/im2col_4.png" /></p>
+<p>Then we reshape the result of K P to the correct shape, which is a 3 x 3 x 1</p>
+<p>Refs: <a class="reference external" href="https://medium.com/&#64;_init_/an-illustrated-explanation-of-performing-2d-convolutions-using-matrix-multiplications-1e8de8cd2544">1</a></p>
+</section>
+<section id="using-doubly-block-circulant-matrix">
+<h2>3) Using Doubly Block Circulant Matrix<a class="headerlink" href="#using-doubly-block-circulant-matrix" title="Link to this heading">#</a></h2>
+<p>Let’s say we have a filter <span class="math notranslate nohighlight">\(k\)</span> of size <span class="math notranslate nohighlight">\( m\times m\)</span> and your input data <span class="math notranslate nohighlight">\(\times\)</span> is of size <span class="math notranslate nohighlight">\(n\timesn\)</span>.</p>
+<p><img src='../SAS/images/input.png'>  <img src='../SAS/images/k.png'></p>
+<p>You should unroll <span class="math notranslate nohighlight">\(k\)</span> into a sparse matrix of size <span class="math notranslate nohighlight">\((n-m+1)^2 \times  n^2\)</span>, and unroll x into a long vector <span class="math notranslate nohighlight">\(n^2 \times 1\)</span></p>
+<img src='../SAS/images/conv_mult.png'><img src='../SAS/images/conv_result.png'>
+<p>In the end you should reshape your vector. Convert the resulting vector (which will have a size <span class="math notranslate nohighlight">\((n-m+1)^2 \times 1)\)</span> into a <span class="math notranslate nohighlight">\(n-m+1\)</span> square matrix</p>
+<p>Refs: <a class="reference external" href="https://stackoverflow.com/questions/16798888/2-d-convolution-as-a-matrix-matrix-multiplication">1</a>, <a class="reference external" href="https://dsp.stackexchange.com/questions/35373/2d-convolution-as-a-doubly-block-circulant-matrix-operating-on-a-vector">2</a></p>
+</section>
+<section id="convolution-in-rgb-images">
+<h2>Convolution in RGB Images<a class="headerlink" href="#convolution-in-rgb-images" title="Link to this heading">#</a></h2>
+<p>Number of channels in our image must match the number of channels in our filter, so these two numbers have to be equal. The output of this will be a <span class="math notranslate nohighlight">\(4 \times 4 \times 1\)</span>. We ofetn have <span class="math notranslate nohighlight">\(k\)</span> filters of size <span class="math notranslate nohighlight">\(3\times3\times3\)</span> so the output would be <span class="math notranslate nohighlight">\(k\)</span> images of size <span class="math notranslate nohighlight">\(4 \times 4 \times 1\)</span></p>
+<img src='../SAS/images/06_03.png'/><p><img alt="06_09_1" src="../_images/06_09.png" /></p>
+<p><img alt="2_Channel_Conv_1" src="../_images/3_channel_conv.gif" /></p>
+<p>Refs: <a class="reference external" href="http://datahacker.rs/convolution-rgb-image/">1</a>, <a class="reference external" href="https://cs231n.github.io/convolutional-networks/#conv">2</a></p>
+</section>
+<section id="transpose-convolution">
+<h2>Transpose Convolution<a class="headerlink" href="#transpose-convolution" title="Link to this heading">#</a></h2>
+<p>AKA :</p>
+<ul class="simple">
+<li><p>Deconvolution (bad)</p></li>
+<li><p>Upconvolution</p></li>
+<li><p>Fractionally strided convolution</p></li>
+<li><p>Backward strided convolution</p></li>
+</ul>
+<p>No padding, no strides, transposed</p>
+<p><img alt="stride_1" src="../_images/no_padding_no_strides_transposed.gif" /></p>
+<p>Full padding, no strides, transposed</p>
+<p><img alt="full_pad" src="../_images/full_padding_no_strides_transposed.gif" /></p>
+</section>
+<section id="x1-convolution-network-in-network">
+<h2>1x1 Convolution (Network-in-Network)<a class="headerlink" href="#x1-convolution-network-in-network" title="Link to this heading">#</a></h2>
+<p>Lets say you have tensor <span class="math notranslate nohighlight">\((N, C, H, W)\)</span>, (<span class="math notranslate nohighlight">\(N\)</span> is the batch size, <span class="math notranslate nohighlight">\(CF\)</span> is the number of channel, <span class="math notranslate nohighlight">\(
+H,W\)</span> are the spatial dimensions). Suppose this output is fed into a conv layer with <span class="math notranslate nohighlight">\(F_1\)</span> <span class="math notranslate nohighlight">\(1\times1\times C\)</span> with zero padding and stride 1. Then the output of this <span class="math notranslate nohighlight">\(1\times1\)</span> conv layer will have shape <span class="math notranslate nohighlight">\((N,1,H,W)\)</span>. We dot product every element of the filter with the tensor and apply a RelU function on the output. You can imagine this a single neuron which has <span class="math notranslate nohighlight">\(C\)</span> input. Thats why it is called <strong>Network-in-Network</strong>.</p>
+<p>You can use a <span class="math notranslate nohighlight">\(1\times1\)</span> convolutional layer to reduce <span class="math notranslate nohighlight">\(n_C\)</span> but not <span class="math notranslate nohighlight">\(n_H, n_W\)</span>.</p>
+<p>You can use a pooling layer to reduce <span class="math notranslate nohighlight">\(n_H\)</span>, <span class="math notranslate nohighlight">\(n_W\)</span>, and <span class="math notranslate nohighlight">\(n_C\)</span>.</p>
+<p>Refs: <a class="reference external" href="https://arxiv.org/abs/1312.4400">1</a>, <a class="reference external" href="https://www.youtube.com/watch?v=vcp0XvDAX68">2</a>, <a class="reference external" href="https://stats.stackexchange.com/questions/194142/what-does-1x1-convolution-mean-in-a-neural-network">3</a></p>
+</section>
+<section id="dilated-convolutions">
+<h2>Dilated Convolutions<a class="headerlink" href="#dilated-convolutions" title="Link to this heading">#</a></h2>
+<p>This can be very useful in some settings to use in conjunction with 0-dilated filters because it allows you to merge spatial information across the inputs much more agressively with fewer layers. For example, if you stack two 3x3 CONV layers on top of each other then you can convince yourself that the neurons on the 2nd layer are a function of a 5x5 patch of the input (we would say that the effective receptive field of these neurons is 5x5). If we use dilated convolutions then this effective receptive field would grow much quicker.</p>
+<p><img alt="dilation" src="../_images/dilation.gif" /></p>
+<p>Refs: <a class="reference external" href="https://arxiv.org/abs/1511.07122">1</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./SAS"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../SignalSystemStart.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Signal and System</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Contact_Me.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contact Me</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformation-of-the-independent-variable">Transformation of the  Independent Variable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodic-signals">Periodic Signals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#even-and-odd-signal">Even and Odd Signal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#odd-signal">Odd Signal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#even-signal">Even Signal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-number">Complex number</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartesian-form">Cartesian form</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polar-form">Polar form</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-discrete-unit-impulse-and-unit-step-functions">The Discrete Unit Impulse and Unit Step Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-continuous-unit-impulse-and-unit-step-functions">The Continuous Unit Impulse and Unit Step Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-system-propeties">Basic System Propeties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#systems-with-and-without-memory">Systems with and without Memory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-invariant">Time Invariant</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linearity">Linearity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-representation-of-discrete-time-signals-in-terms-of-impulses">The Representation of Discrete-Time Signals in Terms of Impulses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-discrete-time-unit-impulse-response-and-the-convolution-sum-representation-of-lti-systems">The Discrete-Time Unit Impulse Response and the Convolution-Sum Representation of LTI Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-response-of-linear-system-to-unit-impulse">Example of Response of Linear System to Unit Impulse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#response-of-linear-system-and-time-invariant-to-unit-impulse">Response of Linear System and Time Invariant to Unit Impulse</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-interpretation-of-convolution">Two Interpretation of Convolution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-interpretation">First Interpretation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-interpretation">Second Interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-convolution">2D Convolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separable-convolution-2d">Separable Convolution 2D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-correlation">Cross Correlation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-1">Convolution 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-of-the-convolution-output">Shape of the Convolution Output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-convolution-as-matrix-multiplication">2D Convolution as Matrix Multiplication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-convolution">1) Discrete convolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-im2col">2) Using im2col</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-doubly-block-circulant-matrix">3) Using Doubly Block Circulant Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-in-rgb-images">Convolution in RGB Images</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transpose-convolution">Transpose Convolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x1-convolution-network-in-network">1x1 Convolution (Network-in-Network)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dilated-convolutions">Dilated Convolutions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr.Hadi Sadoghi Yazdi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 Pattern Recognition Lab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
