@@ -1,0 +1,58 @@
+Traceback (most recent call last):
+  File "E:\MainHomePage\.M_HomePage\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "E:\MainHomePage\.M_HomePage\Lib\site-packages\nbclient\client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\MainHomePage\.M_HomePage\Lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dr\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "E:\MainHomePage\.M_HomePage\Lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "E:\MainHomePage\.M_HomePage\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "E:\MainHomePage\.M_HomePage\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import matplotlib.pyplot as plt
+import numpy as np
+
+import pywt
+import pywt.data
+
+# Load image
+original = pywt.data.camera()
+
+# Wavelet transform of image, and plot approximation and details
+titles = ['Approximation', ' Horizontal detail',
+          'Vertical detail', 'Diagonal detail']
+coeffs2 = pywt.dwt2(original, 'bior1.3')
+LL, (LH, HL, HH) = coeffs2
+fig = plt.figure(figsize=(12, 3))
+for i, a in enumerate([LL, LH, HL, HH]):
+    ax = fig.add_subplot(1, 4, i + 1)
+    ax.imshow(a, interpolation="nearest", cmap=plt.cm.gray)
+    ax.set_title(titles[i], fontsize=10)
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+fig.tight_layout()
+plt.show()
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [1;32mIn[5], line 4[0m
+[0;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[0;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m----> 4[0m [38;5;28;01mimport[39;00m [38;5;21;01mpywt[39;00m
+[0;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mpywt[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdata[39;00m
+[0;32m      7[0m [38;5;66;03m# Load image[39;00m
+
+[1;31mModuleNotFoundError[0m: No module named 'pywt'
+

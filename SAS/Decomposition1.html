@@ -1,0 +1,1187 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Decomposition &#8212; Dr.Hadi Sadoghi Yazdi</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SAS/Decomposition1';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Convolution" href="convolution.html" />
+    <link rel="prev" title="An Introduction to Decomposition" href="Decomposition.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../SignalSystemStart.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Hadi_Sadoghi_Yazdi.png" class="logo__image only-light" alt="Dr.Hadi Sadoghi Yazdi - Home"/>
+    <script>document.write(`<img src="../_static/Hadi_Sadoghi_Yazdi.png" class="logo__image only-dark" alt="Dr.Hadi Sadoghi Yazdi - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../SignalSystemStart.html">
+                    Signal and System
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="SignalDefinition.html">Signal Definition</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Decomposition.html">An Introduction to Decomposition</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convolution.html">Convolution</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="SignalPython_Start.html">Signal Processing with python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SignalPython/WhatSignal.html">What Signal</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Contact_Me.html">Contact Me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../About_Me.html">About Me</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/h-sadoghi/dr-sadoghi.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/h-sadoghi/dr-sadoghi.git/issues/new?title=Issue%20on%20page%20%2FSAS/Decomposition1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/SAS/Decomposition1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Decomposition</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-decomposition">Discrete Decomposition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basis-functions">Basis Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-orthogonality">Verify Orthogonality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-ceoficients">Compute ceoficients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-energy-of-each-basis-function-e-phi-k">1. Compute the Energy of Each Basis Function <span class="math notranslate nohighlight">\( E_{\phi_k} \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-coefficients-a-k">Compute the Coefficients <span class="math notranslate nohighlight">\( a_k \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-approximation-hat-x-n">Compute the Approximation <span class="math notranslate nohighlight">\( \hat{x}[n] \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison">Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-decompose-with-haar">Homework: Decompose with Haar</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-decomposition">Fourier Decomposition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notice-fourier-series-do-over-periodic-signals">Notice Fourier series do over periodic signals</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="decomposition">
+<h1>Decomposition<a class="headerlink" href="#decomposition" title="Link to this heading">#</a></h1>
+<section id="discrete-decomposition">
+<h2>Discrete Decomposition<a class="headerlink" href="#discrete-decomposition" title="Link to this heading">#</a></h2>
+<p>Another example of decomposition on a discrete signal:</p>
+<div class="math notranslate nohighlight">
+\[
+x(n) = \sum_{n \in \mathbb{Z}} a_k \phi_k(n)
+\]</div>
+<p>where the basis functions are shown in Figure 1, and the signal is depicted in Figure 2.</p>
+<p>To introduce an orthogonal set of basis functions <span class="math notranslate nohighlight">\(\phi_k(n)\)</span> for <span class="math notranslate nohighlight">\(k = 1\)</span> to <span class="math notranslate nohighlight">\(4\)</span> based on your provided definition, let’s define each <span class="math notranslate nohighlight">\(\phi_k(n)\)</span> explicitly. Here, <span class="math notranslate nohighlight">\(\phi_0(n)\)</span> is given, and we will extend the pattern for <span class="math notranslate nohighlight">\(\phi_1(n)\)</span> through <span class="math notranslate nohighlight">\(\phi_3(n)\)</span>.</p>
+<section id="basis-functions">
+<h3>Basis Functions<a class="headerlink" href="#basis-functions" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong><span class="math notranslate nohighlight">\(\phi_0(n)\)</span></strong>
+$<span class="math notranslate nohighlight">\(
+\phi_0(n) = \begin{cases} 
+1 &amp; \text{for } n = 0, 1, 2, 3, 4, 5, 6, 7 \\
+0 &amp; \text{otherwise}
+\end{cases}
+\)</span><span class="math notranslate nohighlight">\(
+For \)</span>n = 0<span class="math notranslate nohighlight">\( to \)</span>7<span class="math notranslate nohighlight">\(, \)</span>\phi_0(n) = 1$.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\phi_1(n)\)</span></strong>
+$<span class="math notranslate nohighlight">\(
+\phi_1(n) = \begin{cases} 
+1 &amp; \text{for } n = 0, 1, 2, 3 \\
+-1 &amp; \text{for } n = 4, 5, 6, 7 \\
+0 &amp; \text{otherwise}
+\end{cases}
+\)</span><span class="math notranslate nohighlight">\(
+For \)</span>n = 0<span class="math notranslate nohighlight">\( to \)</span>3<span class="math notranslate nohighlight">\(, \)</span>\phi_1(n) = 1<span class="math notranslate nohighlight">\(, and for \)</span>n = 4<span class="math notranslate nohighlight">\( to \)</span>7<span class="math notranslate nohighlight">\(, \)</span>\phi_1(n) = -1$.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\phi_2(n)\)</span></strong>
+To generate an orthogonal basis function, we use a pattern of changing signs more frequently. For <span class="math notranslate nohighlight">\(k = 2\)</span>, we divide the range into 4 intervals:
+$<span class="math notranslate nohighlight">\(
+\phi_2(n) = \begin{cases} 
+1 &amp; \text{for } n = 0, 1 \\
+-1 &amp; \text{for } n = 2, 3 \\
+1 &amp; \text{for } n = 4, 5 \\
+-1 &amp; \text{for } n = 6, 7 \\
+0 &amp; \text{otherwise}
+\end{cases}
+\)</span>$</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\phi_3(n)\)</span></strong>
+We continue to follow the pattern of changing signs more frequently, creating a higher frequency basis function:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \phi_3(n) = \begin{cases} 
+   1 &amp; \text{for } n = 0 \\
+   -1 &amp; \text{for } n = 1 \\
+   1 &amp; \text{for } n = 2 \\
+   -1 &amp; \text{for } n = 3 \\
+   1 &amp; \text{for } n = 4 \\
+   -1 &amp; \text{for } n = 5 \\
+   1 &amp; \text{for } n = 6 \\
+   -1 &amp; \text{for } n = 7 \\
+   0 &amp; \text{otherwise}
+   \end{cases}
+   \end{split}\]</div>
+</li>
+</ol>
+</section>
+<section id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\phi_0(n)\)</span></strong> is a constant function over the entire range.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\phi_1(n)\)</span></strong> alternates between 1 and -1 over the range.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\phi_2(n)\)</span></strong> alternates signs in blocks.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\phi_3(n)\)</span></strong> alternates signs more frequently within the range.</p></li>
+</ul>
+<p>These functions can form an orthogonal set when their inner products are computed over the specified interval. The functions are designed to be orthogonal to each other by construction, typically achieved by ensuring that the integral of their product over the range is zero for <span class="math notranslate nohighlight">\(k \neq l\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define the basis functions</span>
+<span class="k">def</span> <span class="nf">phi_0</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">phi_1</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">phi_2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">n</span> <span class="o">%</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">phi_3</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define the range of n</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Plot the basis functions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot phi_0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">phi_0</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;φ₀(n)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;φ₀(n)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plot phi_1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">phi_1</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;φ₁(n)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;φ₁(n)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plot phi_2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">phi_2</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;φ₂(n)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;φ₂(n)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plot phi_3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">phi_3</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;φ₃(n)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;φ₃(n)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7d6cd1b0f8625af7b5945da6534ae7d308d897ea1bfad8ef3659835820b7720c.png" src="../_images/7d6cd1b0f8625af7b5945da6534ae7d308d897ea1bfad8ef3659835820b7720c.png" />
+</div>
+</div>
+</section>
+<section id="verify-orthogonality">
+<h3>Verify Orthogonality<a class="headerlink" href="#verify-orthogonality" title="Link to this heading">#</a></h3>
+<p>To check if the set <span class="math notranslate nohighlight">\(\psi\)</span> including <span class="math notranslate nohighlight">\(\phi_0\)</span>, <span class="math notranslate nohighlight">\(\phi_1\)</span>, and <span class="math notranslate nohighlight">\(\phi_2\)</span> is orthogonal, you need to verify if the inner products of each pair of basis functions are zero.</p>
+<p><strong>Compute Inner Products</strong></p>
+<p>To check if <span class="math notranslate nohighlight">\(\phi_0\)</span>, <span class="math notranslate nohighlight">\(\phi_1\)</span>, and <span class="math notranslate nohighlight">\(\phi_2\)</span> are orthogonal, you need to compute the inner products between each pair:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\langle \phi_0, \phi_1 \rangle\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\langle \phi_0, \phi_2 \rangle\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\langle \phi_1, \phi_2 \rangle\)</span></p></li>
+</ul>
+<p>The inner product is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+   \langle \phi_i, \phi_j \rangle = \sum_{n \in \mathbb{Z}} \phi_i(n) \phi_j(n)
+   \]</div>
+<p>where <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> are indices of the basis functions.</p>
+<p><em><strong>Check Each Pair</strong></em></p>
+<p>For each pair of basis functions, you should compute:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\langle \phi_0, \phi_1 \rangle = \sum_{n \in \mathbb{Z}} \phi_0(n) \phi_1(n)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\langle \phi_0, \phi_2 \rangle = \sum_{n \in \mathbb{Z}} \phi_0(n) \phi_2(n)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\langle \phi_1, \phi_2 \rangle = \sum_{n \in \mathbb{Z}} \phi_1(n) \phi_2(n)\)</span></p></li>
+</ul>
+<p>If all these inner products are zero, then <span class="math notranslate nohighlight">\(\phi_0\)</span>, <span class="math notranslate nohighlight">\(\phi_1\)</span>, and <span class="math notranslate nohighlight">\(\phi_2\)</span> are orthogonal.</p>
+<p><strong>Compute Energy</strong></p>
+<p>The energy of each function is given by the inner product of the function with itself:</p>
+<div class="math notranslate nohighlight">
+\[
+E_i = \langle \phi_i, \phi_i \rangle = \sum_{n \in \mathbb{Z}} \phi_i(n) \phi_i(n)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(i\)</span> denotes the index of the basis function. Compute this for each function <span class="math notranslate nohighlight">\(\phi_0\)</span>, <span class="math notranslate nohighlight">\(\phi_1\)</span>, and <span class="math notranslate nohighlight">\(\phi_2\)</span>.</p>
+</section>
+<section id="compute-ceoficients">
+<h3>Compute ceoficients<a class="headerlink" href="#compute-ceoficients" title="Link to this heading">#</a></h3>
+<p>To decompose the signal <span class="math notranslate nohighlight">\( x[n] = [\frac{1}{2}, \frac{1}{2}, 4, 4, -\frac{1}{2}, -\frac{1}{2}] \)</span> using the orthogonal basis functions <span class="math notranslate nohighlight">\(\phi_0, \phi_1, \phi_2, \phi_3\)</span>, follow these steps:</p>
+</section>
+<section id="compute-the-energy-of-each-basis-function-e-phi-k">
+<h3>1. Compute the Energy of Each Basis Function <span class="math notranslate nohighlight">\( E_{\phi_k} \)</span><a class="headerlink" href="#compute-the-energy-of-each-basis-function-e-phi-k" title="Link to this heading">#</a></h3>
+<p>The energy <span class="math notranslate nohighlight">\( E_{\phi_k} \)</span> of each basis function <span class="math notranslate nohighlight">\(\phi_k\)</span> is given by:
+$<span class="math notranslate nohighlight">\( E_{\phi_k} = \sum_{n} \phi_k(n)^2 \)</span>$</p>
+<p><strong>Basis Functions:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\phi_0(n)\)</span>: 1 for all <span class="math notranslate nohighlight">\( n \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi_1(n)\)</span>: 1 for <span class="math notranslate nohighlight">\( n = 0, 1, 2, 3 \)</span> and -1 for <span class="math notranslate nohighlight">\( n = 4, 5, 6, 7 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi_2(n)\)</span>: 1 for <span class="math notranslate nohighlight">\( n \% 4 = 0, 1 \)</span> and -1 for <span class="math notranslate nohighlight">\( n \% 4 = 2, 3 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi_3(n)\)</span>: 1 for even <span class="math notranslate nohighlight">\( n \)</span> and -1 for odd <span class="math notranslate nohighlight">\( n \)</span></p></li>
+</ul>
+<p>Let’s compute <span class="math notranslate nohighlight">\( E_{\phi_k} \)</span> for each function:</p>
+<ul class="simple">
+<li><p><strong>For <span class="math notranslate nohighlight">\(\phi_0(n)\)</span>:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+E_{\phi_0} = \sum_{n=0}^{7} (1)^2 = 8
+\]</div>
+<ul class="simple">
+<li><p><strong>For <span class="math notranslate nohighlight">\(\phi_1(n)\)</span>:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+E_{\phi_1} = \sum_{n=0}^{7} \phi_1(n)^2 = 4 + 4 = 8
+\]</div>
+<ul class="simple">
+<li><p><strong>For <span class="math notranslate nohighlight">\(\phi_2(n)\)</span>:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+E_{\phi_2} = \sum_{n=0}^{7} \phi_2(n)^2 = 4 + 4 = 8
+\]</div>
+<ul class="simple">
+<li><p><strong>For <span class="math notranslate nohighlight">\(\phi_3(n)\)</span>:</strong>
+$<span class="math notranslate nohighlight">\(
+E_{\phi_3} = \sum_{n=0}^{7} \phi_3(n)^2 = 4 + 4 = 8
+\)</span>$</p></li>
+</ul>
+</section>
+<section id="compute-the-coefficients-a-k">
+<h3>Compute the Coefficients <span class="math notranslate nohighlight">\( a_k \)</span><a class="headerlink" href="#compute-the-coefficients-a-k" title="Link to this heading">#</a></h3>
+<p>The coefficient <span class="math notranslate nohighlight">\( a_k \)</span> for each basis function <span class="math notranslate nohighlight">\(\phi_k\)</span> is computed using:</p>
+<div class="math notranslate nohighlight">
+\[
+a_k = \frac{\langle x(n), \phi_k(n) \rangle}{E_{\phi_k}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\langle x(n), \phi_k(n) \rangle\)</span> is the inner product:</p>
+<div class="math notranslate nohighlight">
+\[
+\langle x(n), \phi_k(n) \rangle = \sum_{n=0}^{7} x(n) \phi_k(n)
+\]</div>
+<p><strong>Computing <span class="math notranslate nohighlight">\( a_k \)</span>:</strong></p>
+<ul class="simple">
+<li><p><strong>For <span class="math notranslate nohighlight">\( \phi_0(n) \)</span>:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\langle x(n), \phi_0(n) \rangle = \sum_{n=0}^{7} x(n) \cdot 1 = \frac{1}{2} + \frac{1}{2} + 4 + 4 - \frac{1}{2} - \frac{1}{2} = 8
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+a_0 = \frac{8}{8} = 1
+\]</div>
+<ul class="simple">
+<li><p><strong>For <span class="math notranslate nohighlight">\( \phi_1(n) \)</span>:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\langle x(n), \phi_1(n) \rangle = \sum_{n=0}^{3} x(n) \cdot 1 + \sum_{n=4}^{7} x(n) \cdot (-1)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\langle x(n), \phi_1(n) \rangle = (\frac{1}{2} + \frac{1}{2} + 4 + 4) - (-\frac{1}{2} - \frac{1}{2}) = 9 - (-1) = 10
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+a_1 = \frac{10}{8} = 1.25
+\]</div>
+<ul class="simple">
+<li><p><strong>For <span class="math notranslate nohighlight">\( \phi_2(n) \)</span>:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\langle x(n), \phi_2(n) \rangle = \sum_{n=0,1,4,5} x(n) \cdot 1 + \sum_{n=2,3,6,7} x(n) \cdot (-1)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\langle x(n), \phi_2(n) \rangle = (\frac{1}{2} + \frac{1}{2} - \frac{1}{2} - \frac{1}{2} - 4 - 4 -0 \frac{1}{2} -0 \frac{1}{2}) = 0-8  = -8
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+a_2 = \frac{8}{8} = -1
+\]</div>
+<ul class="simple">
+<li><p><strong>For <span class="math notranslate nohighlight">\( \phi_3(n) \)</span>:</strong></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\langle x(n), \phi_3(n) \rangle = \sum_{n \text{ even}} x(n) \cdot 1 + \sum_{n \text{ odd}} x(n) \cdot (-1)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+a_3 = \frac{0}{8} = 0
+\]</div>
+</section>
+<section id="compute-the-approximation-hat-x-n">
+<h3>Compute the Approximation <span class="math notranslate nohighlight">\( \hat{x}[n] \)</span><a class="headerlink" href="#compute-the-approximation-hat-x-n" title="Link to this heading">#</a></h3>
+<p>Combine the basis functions to approximate <span class="math notranslate nohighlight">\( x[n] \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{x}[n] = \sum_{k=0}^{3} a_k \phi_k(n)
+\]</div>
+<ul class="simple">
+<li><p><strong>For <span class="math notranslate nohighlight">\( k = 0 \)</span>:</strong> <span class="math notranslate nohighlight">\( a_0 = 1 \)</span></p></li>
+<li><p><strong>For <span class="math notranslate nohighlight">\( k = 1 \)</span>:</strong> <span class="math notranslate nohighlight">\( a_1 = 1.25 \)</span></p></li>
+<li><p><strong>For <span class="math notranslate nohighlight">\( k = 2 \)</span>:</strong> <span class="math notranslate nohighlight">\( a_2 = -1 \)</span></p></li>
+<li><p><strong>For <span class="math notranslate nohighlight">\( k = 3 \)</span>:</strong> <span class="math notranslate nohighlight">\( a_3 = 0 \)</span></p></li>
+</ul>
+<p>Using the basis functions:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{x}[n] = a_0 \phi_0(n) + a_1 \phi_1(n) + a_2 \phi_2(n) + a_3 \phi_3(n)
+\]</div>
+</section>
+<section id="comparison">
+<h3>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">#</a></h3>
+<p>To compare <span class="math notranslate nohighlight">\(\hat{x}[n]\)</span> with <span class="math notranslate nohighlight">\(x[n]\)</span>, plot or print the values of <span class="math notranslate nohighlight">\(\hat{x}[n]\)</span> and <span class="math notranslate nohighlight">\(x[n]\)</span>.</p>
+<p><strong>Values of <span class="math notranslate nohighlight">\(x[n]\)</span>:</strong>
+$<span class="math notranslate nohighlight">\(
+x[n] = [\frac{1}{2}, \frac{1}{2}, 4, 4, -\frac{1}{2}, -\frac{1}{2}, 0, 0]
+\)</span>$</p>
+<p><strong>Values of <span class="math notranslate nohighlight">\(\hat{x}[n]\)</span> (approximation):</strong>
+Calculate <span class="math notranslate nohighlight">\(\hat{x}[n]\)</span> using the defined basis functions and coefficients.</p>
+<p>This process will give you an approximate representation of <span class="math notranslate nohighlight">\(x[n]\)</span> using the orthogonal basis functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define basis functions</span>
+<span class="k">def</span> <span class="nf">phi_0</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">phi_1</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">phi_2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">phi_3</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Mapping for basis functions</span>
+<span class="k">def</span> <span class="nf">basis_functions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the basis function φ_k(n) for index k.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">phi_0</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">phi_1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">phi_2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">phi_3</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Extend this mapping for more basis functions if needed</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Basis function φ_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">(n) not defined.&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">calculate_alpha</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate the coefficient α_k for basis function φ_k(n).&quot;&quot;&quot;</span>
+    <span class="n">phi_k_n</span> <span class="o">=</span> <span class="n">basis_functions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">E_phi_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">phi_k_n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>   <span class="c1"># Normalize E_phi_k</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">phi_k_n</span><span class="p">)</span> <span class="o">/</span> <span class="n">E_phi_k</span>
+
+<span class="k">def</span> <span class="nf">reconstruct_signal</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">max_basis</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reconstruct the signal x_hat[n] using the coefficients and basis functions.&quot;&quot;&quot;</span>
+    <span class="n">x_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_basis</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># +1 to include K</span>
+        <span class="n">phi_k_n</span> <span class="o">=</span> <span class="n">basis_functions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="n">x_hat</span> <span class="o">+=</span> <span class="n">coefficients</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">phi_k_n</span>
+    <span class="k">return</span> <span class="n">x_hat</span>
+
+<span class="c1"># Define the indices and original signal</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Specify the number of basis functions (K)</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Change this value to include more basis functions if defined</span>
+
+<span class="c1"># Calculate coefficients</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="p">[</span><span class="n">calculate_alpha</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+<span class="c1"># Reconstruct the signal</span>
+<span class="n">x_hat</span> <span class="o">=</span> <span class="n">reconstruct_signal</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+
+<span class="c1"># Plot original and reconstructed signals</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Signal x[n]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x[n]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x_hat</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Reconstructed Signal x_hat[n]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x_hat[n]&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Print coefficients</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficients:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;α_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">coefficients</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/431217787bf2a9e6596e879cb828ca07c7f1a032cb9ac9c87fa662c0293d8cc4.png" src="../_images/431217787bf2a9e6596e879cb828ca07c7f1a032cb9ac9c87fa662c0293d8cc4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficients:
+α_0 = 1.000
+α_1 = 1.250
+α_2 = -1.000
+α_3 = 0.000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="homework-decompose-with-haar">
+<h2>Homework: Decompose with Haar<a class="headerlink" href="#homework-decompose-with-haar" title="Link to this heading">#</a></h2>
+<p>Write a complete implementation based on the code discussed above. Ensure that your code is fully functional and includes all necessary components to achieve the desired results. Be thorough in your documentation and include comments where necessary to explain your logic and methodology.</p>
+<section id="fourier-decomposition">
+<h3>Fourier Decomposition<a class="headerlink" href="#fourier-decomposition" title="Link to this heading">#</a></h3>
+<p>The final example of decomposition is presented to conclude the introduction of the topic in the lesson. We have become sufficiently familiar with the decomposition and will now move on to discussing systems.</p>
+<p><strong>Example:</strong> The following set is introduced:
+$<span class="math notranslate nohighlight">\(
+\psi = \{ e^{jk\omega_0 t} ; k \in \mathbb{Z} \}
+\)</span>$</p>
+<p>(Equation 4)</p>
+<p>The first step in the decomposition is to check the orthogonality of the given set. If it is not orthogonal, it must be solved by another method, but there is no need to solve it this way.</p>
+<div class="math notranslate nohighlight">
+\[
+\langle e^{jk\omega_0 t}, e^{jl\omega_0 t} \rangle = ? \quad \text{for} \quad k \neq l
+\]</div>
+<p>(Equation 5)</p>
+<p>If Equation 5 equals zero, the set will be orthogonal.</p>
+<div class="math notranslate nohighlight">
+\[
+\int_T e^{jk\omega_0 t} e^{-jl\omega_0 t} \, dt \quad \text{where} \quad \omega_0 = \frac{2\pi}{T} \text{ or } T = \frac{2\pi}{\omega_0}
+= \int_T e^{j\omega_0 t(k-l)} \, dt = \int_T \left[\cos((k-l)\omega_0 t) + j \sin((k-l)\omega_0 t)\right] \, dt 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= \int_T \cos((k-l)\omega_0 t) \, dt + j \int_T \sin((k-l)\omega_0 t) \, dt
+\]</div>
+<p>(Equation 6)</p>
+<p>We know that the integrals of sine and cosine over their period are zero. Thus, for <span class="math notranslate nohighlight">\(k - l\)</span>, it is also zero because <span class="math notranslate nohighlight">\(k\)</span> is not equal to <span class="math notranslate nohighlight">\(l\)</span> and <span class="math notranslate nohighlight">\(k - l\)</span> does not become zero. Hence, Equation 6 equals zero, so the set <span class="math notranslate nohighlight">\(\psi\)</span> is orthogonal.</p>
+<p>Now, we calculate Equation 5 for <span class="math notranslate nohighlight">\(k = l\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_T \cos(\omega_0 t) \, dt + j \int_T \sin(\omega_0 t) \, dt = \int_T 1 \, dt = t \bigg|_0^T = T
+\]</div>
+<p>Thus, in general, we have:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\langle e^{jk\omega_0 t}, e^{jl\omega_0 t} \rangle = \begin{cases} 
+T &amp; \text{if } k = l \\
+0 &amp; \text{if } k \neq l
+\end{cases}
+\end{split}\]</div>
+<p>Therefore, <span class="math notranslate nohighlight">\(\psi\)</span> is an orthogonal set.</p>
+<p>In the second step, the coefficients <span class="math notranslate nohighlight">\(\alpha\)</span> must be calculated, which are obtained from the following relation:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha_k = \frac{1}{E_{\phi_k}} \int_T x(t) \phi_k^*(t) \, dt 
+\]</div>
+<p>(Equation 7)</p>
+<div class="math notranslate nohighlight">
+\[
+(\phi_k(t) = e^{jk\omega_0 t})^* = e^{-jk\omega_0 t}
+\]</div>
+<p>Substituting into Equation 7, we have:</p>
+<div class="math notranslate nohighlight">
+\[
+a_k = \frac{1}{T} \int_T x(t) e^{-jk\omega_0 t} \, dt 
+\]</div>
+<p>(Equation 8)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="n">i2pi</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">I</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">pi</span> <span class="c1"># i2pi is shorthand for 2πi (imaginary part)</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">exp</span> <span class="c1"># The exponential function from sympy</span>
+<span class="k">def</span> <span class="nf">S</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="n">i2pi</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="n">P</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="nb">complex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">c</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
+               <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="n">i2pi</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="n">P</span><span class="p">),</span>
+               <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">P</span><span class="p">))</span><span class="o">/</span><span class="n">P</span><span class="p">)</span>
+
+<span class="c1">#  These functions work quite well for a periodic sawtooth function:</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">t</span>
+
+<span class="n">P</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># Period of the sawtooth wave</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>  <span class="c1"># Starting point of the period</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Symbolic variable for time</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Number of Fourier terms (harmonics)</span>
+
+<span class="n">analytic_approx</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">()</span>
+<span class="n">analytic_approx</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{20 \sin{\left(\frac{\pi t}{10} \right)}}{\pi} - \frac{10 \sin{\left(\frac{\pi t}{5} \right)}}{\pi} + \frac{20 \sin{\left(\frac{3 \pi t}{10} \right)}}{3 \pi} - \frac{5 \sin{\left(\frac{2 \pi t}{5} \right)}}{\pi}\]</div>
+</div>
+</div>
+</section>
+</section>
+<section id="notice-fourier-series-do-over-periodic-signals">
+<h2>Notice Fourier series do over periodic signals<a class="headerlink" href="#notice-fourier-series-do-over-periodic-signals" title="Link to this heading">#</a></h2>
+<p>Notice that the function we defined was just <span class="math notranslate nohighlight">\( y=t \)</span> , but Fourier series always approximates periodic signals. We can see the bit we approximated repeating if we plot over a larger interval</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interval</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span> <span class="o">-</span> <span class="n">P</span><span class="p">,</span> <span class="n">t0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">P</span><span class="p">)</span>  <span class="c1"># Define the interval for plotting</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">interval</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Plot the original sawtooth function</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">analytic_approx</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Plot the Fourier approximation</span>
+
+<span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">line_color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>  <span class="c1"># Set Fourier series plot color to red</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>  <span class="c1"># Combine the original and Fourier series plots</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Display the combined plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/af1c5bd54a8ae5c3befa2e1ebd7fa285dbf9fbb52cc84fea705ce3722292d35c.png" src="../_images/af1c5bd54a8ae5c3befa2e1ebd7fa285dbf9fbb52cc84fea705ce3722292d35c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">fourier_series</span><span class="p">,</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">sympy.abc</span> <span class="kn">import</span> <span class="n">x</span>
+
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>  <span class="c1"># Define the function f(x) = x^2</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Number of Fourier terms (harmonics)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">fourier_series</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">pi</span><span class="p">,</span> <span class="n">pi</span><span class="p">))</span>  <span class="c1"># Compute the Fourier series of f over [-pi, pi]</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>  <span class="c1"># Truncate the series to 3 terms (n=3)</span>
+<span class="n">s1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - 4 \cos{\left(x \right)} + \cos{\left(2 x \right)} - \frac{4 \cos{\left(3 x \right)}}{9} + \frac{\pi^{2}}{3}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">fourier_series</span><span class="p">,</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
+
+<span class="c1"># Define symbolic variable for time</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Define the periodic quadratic function f(t) = t^2</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Define parameters</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># Period of the wave</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>  <span class="c1"># Starting point of the period</span>
+
+<span class="c1"># Compute the Fourier series for f(t) = t^2 over the interval [-P/2, P/2]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># Number of Fourier terms (harmonics)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">fourier_series</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">P</span><span class="p">))</span>  <span class="c1"># Compute Fourier series</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>  <span class="c1"># Truncate to the first N terms (N harmonics)</span>
+
+<span class="c1"># Define the interval for plotting</span>
+<span class="n">interval</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span> <span class="o">-</span> <span class="n">P</span><span class="p">,</span> <span class="n">t0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">P</span><span class="p">)</span>
+
+<span class="c1"># Plot the original function f(t) = t^2</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">interval</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original function&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot the truncated Fourier series approximation</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Fourier Series Approx (N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Combine the two plots</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+
+<span class="c1"># Set colors for better visualization</span>
+<span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">line_color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span>  <span class="c1"># Set the color of the original function</span>
+<span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">line_color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>   <span class="c1"># Set the color of the Fourier approximation</span>
+
+<span class="c1"># Show the combined plot</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4d48472b6446c7f17905631b2c12ef5a71578f6629d811e759402b29ae1fd3fa.png" src="../_images/4d48472b6446c7f17905631b2c12ef5a71578f6629d811e759402b29ae1fd3fa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">fourier_series</span><span class="p">,</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
+
+<span class="c1"># Define symbolic variable for time</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Define the periodic piecewise quadratic function f(t) = t^2 for -2 &lt;= t &lt;= 2, and 0 elsewhere</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Piecewise</span><span class="p">((</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+
+<span class="c1"># Define parameters</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># Period of the wave</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="o">-</span><span class="n">P</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Starting point of the period (centered around 0)</span>
+
+<span class="c1"># Compute the Fourier series for f(t) over the interval [-P/2, P/2]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># Number of Fourier terms (harmonics)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">fourier_series</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">P</span><span class="p">))</span>  <span class="c1"># Compute Fourier series over [-P/2, P/2]</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>  <span class="c1"># Truncate to the first N terms (N harmonics)</span>
+
+<span class="c1"># Define the interval for plotting</span>
+<span class="n">interval</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t0</span> <span class="o">-</span> <span class="n">P</span><span class="p">,</span> <span class="n">t0</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">P</span><span class="p">)</span>  <span class="c1"># Extend the plot over two periods</span>
+
+<span class="c1"># Plot the original function f(t)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">interval</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original function&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot the truncated Fourier series approximation</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Fourier Series Approx (N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Combine the two plots</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+
+<span class="c1"># Set colors for better visualization</span>
+<span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">line_color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span>  <span class="c1"># Set the color of the original function</span>
+<span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">line_color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>   <span class="c1"># Set the color of the Fourier approximation</span>
+
+<span class="c1"># Show the combined plot</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4c32cf72e67f31a3dc0ae4f57489680f4c3dd7396442a09fe867d9be5ecc49d0.png" src="../_images/4c32cf72e67f31a3dc0ae4f57489680f4c3dd7396442a09fe867d9be5ecc49d0.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./SAS"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Decomposition.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">An Introduction to Decomposition</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="convolution.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Convolution</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-decomposition">Discrete Decomposition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basis-functions">Basis Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-orthogonality">Verify Orthogonality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-ceoficients">Compute ceoficients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-energy-of-each-basis-function-e-phi-k">1. Compute the Energy of Each Basis Function <span class="math notranslate nohighlight">\( E_{\phi_k} \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-coefficients-a-k">Compute the Coefficients <span class="math notranslate nohighlight">\( a_k \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-the-approximation-hat-x-n">Compute the Approximation <span class="math notranslate nohighlight">\( \hat{x}[n] \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison">Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-decompose-with-haar">Homework: Decompose with Haar</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-decomposition">Fourier Decomposition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notice-fourier-series-do-over-periodic-signals">Notice Fourier series do over periodic signals</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr.Hadi Sadoghi Yazdi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 Pattern Recognition Lab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

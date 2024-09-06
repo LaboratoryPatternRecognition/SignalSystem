@@ -1,0 +1,1342 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>An Introduction to Decomposition &#8212; Dr.Hadi Sadoghi Yazdi</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SAS/Decomposition';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Decomposition" href="Decomposition1.html" />
+    <link rel="prev" title="Signal Definition" href="SignalDefinition.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../SignalSystemStart.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Hadi_Sadoghi_Yazdi.png" class="logo__image only-light" alt="Dr.Hadi Sadoghi Yazdi - Home"/>
+    <script>document.write(`<img src="../_static/Hadi_Sadoghi_Yazdi.png" class="logo__image only-dark" alt="Dr.Hadi Sadoghi Yazdi - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../SignalSystemStart.html">
+                    Signal and System
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="SignalDefinition.html">Signal Definition</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">An Introduction to Decomposition</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Decomposition1.html">Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convolution.html">Convolution</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="SignalPython_Start.html">Signal Processing with python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="SignalPython/WhatSignal.html">What Signal</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../Contact_Me.html">Contact Me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../About_Me.html">About Me</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/h-sadoghi/dr-sadoghi.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/h-sadoghi/dr-sadoghi.git/issues/new?title=Issue%20on%20page%20%2FSAS/Decomposition.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/SAS/Decomposition.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>An Introduction to Decomposition</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">An Introduction to Decomposition</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-decomposition">Signal Decomposition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-for-calculating-coefficients">Method for Calculating Coefficients</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-alpha-0">Calculating <span class="math notranslate nohighlight">\( \alpha_0 \)</span>:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-alpha-1">Calculating <span class="math notranslate nohighlight">\( \alpha_1 \)</span>:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-signal-x-t-e-t">Example: Signal <span class="math notranslate nohighlight">\( x(t) = e^t \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-signal-x-t-sin-t">Example: Signal <span class="math notranslate nohighlight">\( x(t) = \sin(t) \)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Signal Decomposition</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-coefficients">Calculating Coefficients</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basis-functions-and-orthogonal-sets">Basis Functions and Orthogonal Sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-computation-of-coefficients-and-simplifying-the-process">Reducing Computation of Coefficients and Simplifying the Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-5">Figure 5</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-6">Figure 6</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procedure-for-generating-haar-orthogonal-set">Procedure for Generating Haar Orthogonal Set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-with-haar">Image with Haar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homeworks-denoising">Homeworks: Denoising</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-orthogonal-sets">Examples of Orthogonal Sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-orthogonal-function-legendre-polynomials">Another orthogonal function : Legendre Polynomials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition"><strong>Definition</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonality"><strong>Orthogonality</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization"><strong>Normalization</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-few-legendre-polynomials"><strong>First Few Legendre Polynomials</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties"><strong>Properties</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-decomposition">
+<h1>An Introduction to Decomposition<a class="headerlink" href="#an-introduction-to-decomposition" title="Link to this heading">#</a></h1>
+<p>One of the most common tasks in signal processing is segmentation. Sometimes, segmentation becomes a foundation for signal decomposition, although signal decomposition itself has not yet been discussed. The reason for providing numerous examples of segmentation is that it can serve as a basis for signal decomposition.</p>
+<p>As previously demonstrated, the word “sig” was broken down into its structural components: “s”, “i”, and “g”. Now, the word “sig” can be divided into these segments. Another good signal that is readily available is the stock market signal, which is popular today. In <strong>Figure 1</strong>, the stock of Sahand Rubber is shown. Using the tool depicted in <strong>Figure 2</strong>, this signal can be manually segmented (segmentation is a more appropriate term here). This process is called segmentation. By doing this, one can identify the rise and fall of the stock.</p>
+<p><img alt="StockSegmentatio_1" src="../_images/StockSegmentatio.png" /></p>
+<p><img alt="StockSegmentatio_2" src="../_images/StockSegmentation_1.png" /></p>
+<section id="signal-decomposition">
+<h2>Signal Decomposition<a class="headerlink" href="#signal-decomposition" title="Link to this heading">#</a></h2>
+<p>In this session, we will discuss signal decomposition. The signal <span class="math notranslate nohighlight">\( x(t) \)</span> is decomposed based on the basis functions <span class="math notranslate nohighlight">\( \phi_k(t) \)</span>. In other words, a combination of basis functions constructs the signal <span class="math notranslate nohighlight">\( x(t) \)</span>. Now, if the basis function is defined as <span class="math notranslate nohighlight">\( \phi_k(t) = t^k \)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = \sum_{k=0}^{\infty} \alpha_k \phi_k(t)
+\]</div>
+<p>Which simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = \alpha_0 + \alpha_1 t + \alpha_2 t^2 + \alpha_3 t^3 + \ldots + \alpha_k t^k + \ldots \quad \text{(Equation 1)}
+\]</div>
+<section id="method-for-calculating-coefficients">
+<h3>Method for Calculating Coefficients<a class="headerlink" href="#method-for-calculating-coefficients" title="Link to this heading">#</a></h3>
+<section id="calculating-alpha-0">
+<h4>Calculating <span class="math notranslate nohighlight">\( \alpha_0 \)</span>:<a class="headerlink" href="#calculating-alpha-0" title="Link to this heading">#</a></h4>
+<p>Using the Maclaurin expansion:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t=0) = x(0) = \alpha_0 + (\alpha_1 \times 0) + (\alpha_2 \times 0^2) + \ldots = \alpha_0 \implies \alpha_0 = x(0)
+\]</div>
+</section>
+<section id="calculating-alpha-1">
+<h4>Calculating <span class="math notranslate nohighlight">\( \alpha_1 \)</span>:<a class="headerlink" href="#calculating-alpha-1" title="Link to this heading">#</a></h4>
+<p>By differentiating Equation 1, we get:</p>
+<div class="math notranslate nohighlight">
+\[
+x'(t) = \alpha_1 + 2\alpha_2 t + 3\alpha_3 t^2 + \ldots + k\alpha_k t^{k-1}
+\]</div>
+<p>Evaluating at <span class="math notranslate nohighlight">\( t = 0 \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+x'(0) = \alpha_1 \implies \alpha_1 = x'(0)
+\]</div>
+<p>Similarly, other coefficients can be calculated. In general:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha_k = \frac{x^{(k)}(0)}{k!}
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\( x^{(k)} \)</span> denotes the <span class="math notranslate nohighlight">\( k \)</span>-th derivative of <span class="math notranslate nohighlight">\( x(t) \)</span> and <span class="math notranslate nohighlight">\( k! \)</span> is the factorial of <span class="math notranslate nohighlight">\( k \)</span>.</p>
+<p>This method is the Taylor series expansion of the signal based on the basis function <span class="math notranslate nohighlight">\( t^k \)</span>. If we use other basis functions, such as sine and cosine or other functions, we obtain different decompositions of the signal.</p>
+</section>
+</section>
+<section id="example-signal-x-t-e-t">
+<h3>Example: Signal <span class="math notranslate nohighlight">\( x(t) = e^t \)</span><a class="headerlink" href="#example-signal-x-t-e-t" title="Link to this heading">#</a></h3>
+<p>The <span class="math notranslate nohighlight">\( k \)</span>-th derivative of <span class="math notranslate nohighlight">\( x(t) \)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+x^{(k)}(t) = e^t
+\]</div>
+<p>Evaluated at <span class="math notranslate nohighlight">\( t = 0 \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+x^{(k)}(0) = e^0 = 1
+\]</div>
+<p>So the coefficients are:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha_k = \frac{1}{k!}
+\]</div>
+<p>Thus, the Taylor series expansion of <span class="math notranslate nohighlight">\( e^t \)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = \sum_{k=0}^{\infty} \frac{1}{k!} t^k
+\]</div>
+<p>Which is the well-known expansion of the exponential function.</p>
+</section>
+<section id="example-signal-x-t-sin-t">
+<h3>Example: Signal <span class="math notranslate nohighlight">\( x(t) = \sin(t) \)</span><a class="headerlink" href="#example-signal-x-t-sin-t" title="Link to this heading">#</a></h3>
+<p>To calculate the coefficients, we compute the derivatives of different orders at <span class="math notranslate nohighlight">\( t = 0 \)</span>:</p>
+<ul>
+<li><p>First derivative:</p>
+<div class="math notranslate nohighlight">
+\[
+  x'(t) = \cos(t), \quad x'(0) = \cos(0) = 1
+  \]</div>
+</li>
+<li><p>Second derivative:</p>
+<div class="math notranslate nohighlight">
+\[
+  x''(t) = -\sin(t), \quad x''(0) = -\sin(0) = 0
+  \]</div>
+</li>
+<li><p>Third derivative:</p>
+<div class="math notranslate nohighlight">
+\[
+  x'''(t) = -\cos(t), \quad x'''(0) = -\cos(0) = -1
+  \]</div>
+</li>
+<li><p>Fourth derivative:</p>
+<div class="math notranslate nohighlight">
+\[
+  x^{(4)}(t) = \sin(t), \quad x^{(4)}(0) = \sin(0) = 0
+  \]</div>
+</li>
+</ul>
+<p>The coefficients are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \alpha_0 = \dfrac{x(0)}{0!} = \dfrac{\sin(0)}{0!} = 0 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \alpha_1 = \dfrac{x'(0)}{1!} = \dfrac{1}{1} = 1 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \alpha_2 = \dfrac{x''(0)}{2!} = \dfrac{0}{2} = 0 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \alpha_3 = \dfrac{x'''(0)}{3!} = \dfrac{-1}{6} = -\dfrac{1}{6} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \alpha_4 = \dfrac{x^{(4)}(0)}{4!} = \dfrac{0}{24} = 0 \)</span></p></li>
+</ul>
+<p>Thus, the Taylor series expansion of <span class="math notranslate nohighlight">\( \sin(t) \)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = t - \frac{t^3}{6} + \frac{t^5}{120} - \ldots
+\]</div>
+<p>Which is the standard Taylor series expansion of the sine function.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Signal Decomposition<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>In this section, we explore signal decomposition. The signal <span class="math notranslate nohighlight">\(x(t)\)</span> is decomposed based on basis functions <span class="math notranslate nohighlight">\(\phi_k(t)\)</span>. In other words, a combination of basis functions constructs the signal <span class="math notranslate nohighlight">\(x(t)\)</span>. If the basis function is defined as <span class="math notranslate nohighlight">\(\phi_k(t) = t^k\)</span>, then:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = \sum_{k=0}^{\infty} \alpha_k \phi_k(t) = \alpha_0 + \alpha_1 t + \alpha_2 t^2 + \alpha_3 t^3 + \cdots + \alpha_k t^k + \cdots
+\]</div>
+<section id="calculating-coefficients">
+<h2>Calculating Coefficients<a class="headerlink" href="#calculating-coefficients" title="Link to this heading">#</a></h2>
+<p>To calculate <span class="math notranslate nohighlight">\(\alpha_0\)</span>:</p>
+<p>Using the Maclaurin series expansion, we have:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t=0) = x(0) = \alpha_0 + (\alpha_1 \times 0) + (\alpha_2 \times 0) + \cdots = \alpha_0 \quad \text{thus,} \quad \alpha_0 = x(0)
+\]</div>
+<p>To calculate <span class="math notranslate nohighlight">\(\alpha_1\)</span>, we take the derivative of Equation 1:</p>
+<div class="math notranslate nohighlight">
+\[
+x'(t) = \alpha_1 + 2\alpha_2 t + \cdots + k\alpha_k t^{k-1}
+\]</div>
+<p>At <span class="math notranslate nohighlight">\(t=0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+x'(t=0) = x'(0) = \alpha_1
+\]</div>
+<p>Similarly, other coefficients can be calculated. In general:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha_k = \frac{x^{(k)}(0)}{k!}
+\]</div>
+<p>The signal, after calculating the coefficients, will be:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = \sum_{k=0}^{\infty} \frac{x^{(k)}(0)}{k!} t^k
+\]</div>
+<section id="key-points">
+<h3>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The derivative of the signal cannot be easily obtained from the signal itself.</p></li>
+<li><p>Generally, <span class="math notranslate nohighlight">\(x(t)\)</span> is decomposed based on a limited number of coefficients.</p></li>
+<li><p>Typically, only a limited number of signal samples are available, and the derivative is not provided.</p></li>
+</ul>
+<p>For example, let’s consider the signal in Figure 3. We want to approximate the signal in Figure 3 with a polynomial. The basis functions are:</p>
+<div class="math notranslate nohighlight">
+\[
+t^0, t^1, t^2
+\]</div>
+<p>We want to compute a polynomial approximation <span class="math notranslate nohighlight">\(x(t)\)</span> in the form:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = \alpha_0 + \alpha_1 t + \alpha_2 t^2
+\]</div>
+<p>Given some samples, let <span class="math notranslate nohighlight">\(t_0\)</span> to <span class="math notranslate nohighlight">\(t_n\)</span> be these points:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t_0) = \alpha_0 + \alpha_1 t_0 + \alpha_2 t_0^2
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x(t_1) = \alpha_0 + \alpha_1 t_1 + \alpha_2 t_1^2
+\]</div>
+<p>And similarly for <span class="math notranslate nohighlight">\(t_{n-1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t_{n-1}) = \alpha_0 + \alpha_1 t_{n-1} + \alpha_2 t_{n-1}^2
+\]</div>
+<p>This forms a system of <span class="math notranslate nohighlight">\(n\)</span> equations with 3 unknowns, which can be written as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+x(t_0) \\
+\vdots \\
+x(t_{n-1})
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 &amp; t_0 &amp; t_0^2 \\
+\vdots &amp; \vdots &amp; \vdots \\
+1 &amp; t_{n-1} &amp; t_{n-1}^2
+\end{bmatrix}
+\begin{bmatrix}
+\alpha_0 \\
+\alpha_1 \\
+\alpha_2
+\end{bmatrix}
+\end{split}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(d\)</span> be the left vector, <span class="math notranslate nohighlight">\(A\)</span> be the middle matrix, and <span class="math notranslate nohighlight">\(\alpha\)</span> be the right vector. The system is represented as:</p>
+<div class="math notranslate nohighlight">
+\[
+d = A \alpha
+\]</div>
+<p>Multiply both sides by <span class="math notranslate nohighlight">\(A^T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+A^T d = A^T A \alpha
+\]</div>
+<p>We know <span class="math notranslate nohighlight">\(A^T A\)</span> is a square <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix and thus invertible. Solving for <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha = \text{inv}(A^T A) A^T d
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">create_design_matrix</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">degree</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a design matrix for polynomial regression up to a given degree.&quot;&quot;&quot;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">t</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">degree</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">degree</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span> <span class="o">**</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">A</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">num_points</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Number of data points</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c1"># One period of the sine wave</span>
+<span class="n">degree</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Polynomial degree</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>  <span class="c1"># Time instances</span>
+
+<span class="c1"># Generate noisy sinusoidal data</span>
+<span class="n">true_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># True values (no noise)</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">num_points</span><span class="p">)</span>  <span class="c1"># Gaussian noise</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">true_values</span> <span class="o">+</span> <span class="n">noise</span>  <span class="c1"># Observed values with noise</span>
+
+<span class="c1"># Construct the design matrix A for the given polynomial degree</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">create_design_matrix</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span>
+
+<span class="c1"># Compute A^T A and A^T d</span>
+<span class="n">A_T_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="n">A_T_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Solve for alpha using the normal equation</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A_T_A</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A_T_d</span><span class="p">)</span>
+
+<span class="c1"># Predict values using the fitted model</span>
+<span class="n">t_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Higher resolution for plotting</span>
+<span class="n">A_fit</span> <span class="o">=</span> <span class="n">create_design_matrix</span><span class="p">(</span><span class="n">t_fit</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span>
+<span class="n">x_fit</span> <span class="o">=</span> <span class="n">A_fit</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Plot noisy data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Noisy data&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot true sine wave</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">true_values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True sine wave&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot fitted polynomial</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_fit</span><span class="p">,</span> <span class="n">x_fit</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fitted polynomial&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Polynomial Fit to Noisy Sinusoidal Data (Degree </span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e4242bd9512b303c1bcd730d333983a8cc9917932ca512404f95b632273d6f3d.png" src="../_images/e4242bd9512b303c1bcd730d333983a8cc9917932ca512404f95b632273d6f3d.png" />
+</div>
+</div>
+</section>
+<section id="basis-functions-and-orthogonal-sets">
+<h3>Basis Functions and Orthogonal Sets<a class="headerlink" href="#basis-functions-and-orthogonal-sets" title="Link to this heading">#</a></h3>
+<p>In the context of decomposition, instead of using polynomial basis functions of the form <span class="math notranslate nohighlight">\( t^k \)</span>, we might use Gaussian functions. This means that a set of Gaussian signals can be used to construct our signal. The question then becomes: what are the coefficients for these Gaussian functions? The Gaussian function is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+g_{(\mu, \sigma)}(t) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(t - \mu)^2}{2\sigma^2}}
+\]</div>
+<p>The goal is to reconstruct the desired signal using a combination of the signals described by the equation above:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = \sum_{i=1}^N \alpha_i g_{(\mu_i, \sigma_i)}(t)
+\]</div>
+<p>In this equation, if <span class="math notranslate nohighlight">\( x(t) \)</span> is known and the coefficients <span class="math notranslate nohighlight">\( \alpha_i \)</span> are unknown, it represents a decomposition problem. Conversely, if the coefficients are known and <span class="math notranslate nohighlight">\( x(t) \)</span> is unknown, it represents a signal synthesis problem.</p>
+<p>In Figure 5, a Gaussian signal with a mean of 5 and a variance of 2 is shown.</p>
+<p>In Figure 6, a signal created by combining two Gaussian signals is displayed. The first Gaussian signal has a mean of 5, a variance of 2, and a coefficient of 2. The second Gaussian signal has a mean of 3, a variance of 1, and a coefficient of -1.</p>
+<p>Similar to other basis functions, Gaussian signals can be used both for signal generation and for signal decomposition.</p>
+</section>
+<section id="reducing-computation-of-coefficients-and-simplifying-the-process">
+<h3>Reducing Computation of Coefficients and Simplifying the Process<a class="headerlink" href="#reducing-computation-of-coefficients-and-simplifying-the-process" title="Link to this heading">#</a></h3>
+<p>In the continuation, we will discuss reducing the computation of coefficients and simplifying this process.</p>
+<p>During the coefficient calculation, the transpose of a matrix (Equation 4) needs to be computed, followed by three matrix multiplications, which can result in a very high computational cost if the matrices are large. A technique used in signal processing will be explored to make this calculation easier.</p>
+<p>Instead of using Gaussian or polynomial signals, which are costly for calculating coefficients <span class="math notranslate nohighlight">\( \alpha \)</span>, a basis signal from an orthogonal set is used. An orthogonal set means that the signals in the set are mutually perpendicular. Perpendicularity means that the inner product of two different signals is zero.</p>
+<div class="math notranslate nohighlight">
+\[
+&lt;\phi_i(t), \phi_j(t)&gt; = 0 \quad \forall i \neq j \quad \text{(Equation 8)}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+&lt;\phi_i(t), \phi_j(t)&gt; = E_{\phi_i} \quad \forall i = j \quad \text{(Equation 9)}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( E_{\phi_i} \)</span> is the energy of <span class="math notranslate nohighlight">\( \phi_i \)</span>. The inner product for continuous functions needs to be defined. Consider two functions <span class="math notranslate nohighlight">\( f(t) \)</span> and <span class="math notranslate nohighlight">\( g(t) \)</span>. Their inner product is calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+&lt;f(t), g(t)&gt; = \int f(t) g^*(t) \, dt \quad \text{(Equation 10)}
+\]</div>
+<p>For a better understanding, Figure 7 shows several signals. In this image, the signals <span class="math notranslate nohighlight">\( \phi_4 \)</span> and <span class="math notranslate nohighlight">\( \phi_5 \)</span> are orthogonal over the half period of <span class="math notranslate nohighlight">\( \phi_4 \)</span>, as indicated. Since <span class="math notranslate nohighlight">\( \phi_4 \)</span> is constant with a value of 1, and <span class="math notranslate nohighlight">\( \phi_5 \)</span> has a value of 1 over one half period and -1 over the other half period, their inner product is zero, confirming their orthogonality. Similar orthogonality is observed in other sections as well. Thus, these two signals are orthogonal to each other.</p>
+</section>
+<section id="figure-5">
+<h3>Figure 5<a class="headerlink" href="#figure-5" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Parameters</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">variance</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>  <span class="c1"># Standard deviation</span>
+
+<span class="c1"># Time vector</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">mean</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">sigma</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Gaussian function</span>
+<span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">t</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Generate Gaussian signal</span>
+<span class="n">g_signal</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">g_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Gaussian Signal</span><span class="se">\n</span><span class="s1">Mean = </span><span class="si">{</span><span class="n">mean</span><span class="si">}</span><span class="s1">, Variance = </span><span class="si">{</span><span class="n">variance</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gaussian Signal with Mean 5 and Variance 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/67764eaf8dc8a4e9cfaada1af9408a8b8b1a18161ef0bcdb8245bb5a44a7ea33.png" src="../_images/67764eaf8dc8a4e9cfaada1af9408a8b8b1a18161ef0bcdb8245bb5a44a7ea33.png" />
+</div>
+</div>
+</section>
+<section id="figure-6">
+<h3>Figure 6<a class="headerlink" href="#figure-6" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Parameters for the first Gaussian signal</span>
+<span class="n">mean1</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">variance1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance1</span><span class="p">)</span>
+<span class="n">coefficient1</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Parameters for the second Gaussian signal</span>
+<span class="n">mean2</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">variance2</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">sigma2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance2</span><span class="p">)</span>
+<span class="n">coefficient2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="c1"># Time vector</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">mean1</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">mean1</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">sigma1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Gaussian function</span>
+<span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="n">t</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Generate Gaussian signals</span>
+<span class="n">g_signal1</span> <span class="o">=</span> <span class="n">coefficient1</span> <span class="o">*</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mean1</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">)</span>
+<span class="n">g_signal2</span> <span class="o">=</span> <span class="n">coefficient2</span> <span class="o">*</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mean2</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">)</span>
+
+<span class="c1"># Combine the Gaussian signals</span>
+<span class="n">combined_signal</span> <span class="o">=</span> <span class="n">g_signal1</span> <span class="o">+</span> <span class="n">g_signal2</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot individual Gaussian signals</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">g_signal1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Gaussian Signal 1</span><span class="se">\n</span><span class="s1">Mean = </span><span class="si">{</span><span class="n">mean1</span><span class="si">}</span><span class="s1">, Variance = </span><span class="si">{</span><span class="n">variance1</span><span class="si">}</span><span class="s1">, Coefficient = </span><span class="si">{</span><span class="n">coefficient1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">g_signal2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Gaussian Signal 2</span><span class="se">\n</span><span class="s1">Mean = </span><span class="si">{</span><span class="n">mean2</span><span class="si">}</span><span class="s1">, Variance = </span><span class="si">{</span><span class="n">variance2</span><span class="si">}</span><span class="s1">, Coefficient = </span><span class="si">{</span><span class="n">coefficient2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot combined signal</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">combined_signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Combined Signal&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Combined Signal Using Two Gaussian Signals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/497c064378c364968c562f3162767ef99eadfc599b5507f594775fde1efccd45.png" src="../_images/497c064378c364968c562f3162767ef99eadfc599b5507f594775fde1efccd45.png" />
+</div>
+</div>
+</section>
+<section id="procedure-for-generating-haar-orthogonal-set">
+<h3>Procedure for Generating Haar Orthogonal Set<a class="headerlink" href="#procedure-for-generating-haar-orthogonal-set" title="Link to this heading">#</a></h3>
+<p>In Figure 7, when <span class="math notranslate nohighlight">\( \phi_1 \)</span> has a value of 1, <span class="math notranslate nohighlight">\( \phi_2 \)</span> completes one full period. This means <span class="math notranslate nohighlight">\( \phi_2 \)</span> ranges from +1 to -1. Specifically, <span class="math notranslate nohighlight">\( \phi_2 \)</span> is +1 from 0 to <span class="math notranslate nohighlight">\( T/2 \)</span> and -1 from <span class="math notranslate nohighlight">\( T/2 \)</span> to <span class="math notranslate nohighlight">\( T \)</span>, while <span class="math notranslate nohighlight">\( \phi_1 \)</span> is 1 from 0 to <span class="math notranslate nohighlight">\( T \)</span>. The inner product of these two functions is analyzed as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+&lt;\phi_1(t), \phi_2(t)&gt; = \int_T \phi_1(t) \phi_2(t) \, dt = \int_T \phi_2(t) \, dt \quad \text{(Equation 11)}
+\]</div>
+<p>To compute this integral, the area under the curve is used, which equals:</p>
+<div class="math notranslate nohighlight">
+\[
+T/2 + (-T/2) = 0
+\]</div>
+<p>This indicates that <span class="math notranslate nohighlight">\( \phi_1 \)</span> and <span class="math notranslate nohighlight">\( \phi_2 \)</span> are orthogonal to each other.</p>
+<p>Thus, a new set of functions is used as basis signals. This set is represented as <span class="math notranslate nohighlight">\( \psi \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\psi = \{ \phi_k(t) ; k \in \mathbb{Z} \}
+\]</div>
+<p>The orthogonality of this set is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&lt;\phi_k(t), \phi_l(t)&gt; = \begin{cases}
+0 &amp; \text{if } k \neq l \\
+E_{\phi_k} &amp; \text{if } k = l
+\end{cases} \quad \text{(Equation 12)}
+\end{split}\]</div>
+<p>This set is called orthogonal.</p>
+<p>Now, the energy <span class="math notranslate nohighlight">\( E_{\phi_k} \)</span> for the signals in Figure 7 is calculated. For example, if <span class="math notranslate nohighlight">\( \phi_2 \)</span> is integrated with itself, the result is equal to <span class="math notranslate nohighlight">\( T \)</span>, which is referred to as the energy.</p>
+<p>In the past, energy was evaluated for discrete signals. For continuous signals, the energy is calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+E_{\phi_k} = \int_T \phi_k(t) \phi_k^*(t) \, dt = \int_T |\phi_k(t)|^2 \, dt
+\]</div>
+<p>If a set of functions is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\psi = \{ \phi_k(t) ; k \in \mathbb{Z} \}
+\]</div>
+<p>with:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&lt;\phi_k(t), \phi_l(t)&gt; = \begin{cases}
+0 &amp; \text{if } k \neq l \\
+1 &amp; \text{if } k = l
+\end{cases} \quad \text{(Equation 13)}
+\end{split}\]</div>
+<p>This set is called orthonormal. In this set, orthogonality exists, and the energy is 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">haar_mother_wavelet</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the Haar mother wavelet function.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> 
+           <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="mf">0.5</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">haar_daughter_wavelet</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the Haar daughter wavelet function.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">haar_mother_wavelet</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">j</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span>
+
+<span class="c1"># Define the time vector</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Define levels and position for the Haar daughter wavelets</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># Levels from 1 to 5</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Position</span>
+
+<span class="c1"># Create a figure for the plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot Haar daughter wavelets for k = 0 and different levels</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">levels</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">haar_daughter_wavelet</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Haar Daughter Wavelet (Level </span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s1">, k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Haar Daughter Wavelet (Level </span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;ψ(x)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f8d1425631a6531cde6aa16ffe7de50f535ce62728f0a02a83c0073c6e984af6.png" src="../_images/f8d1425631a6531cde6aa16ffe7de50f535ce62728f0a02a83c0073c6e984af6.png" />
+</div>
+</div>
+</section>
+<section id="image-with-haar">
+<h3>Image with Haar<a class="headerlink" href="#image-with-haar" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">pywt</span>
+<span class="kn">import</span> <span class="nn">pywt.data</span>
+
+<span class="c1"># Load image</span>
+<span class="n">original</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">camera</span><span class="p">()</span>
+
+<span class="c1"># Wavelet transform of image, and plot approximation and details</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Approximation&#39;</span><span class="p">,</span> <span class="s1">&#39; Horizontal detail&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Vertical detail&#39;</span><span class="p">,</span> <span class="s1">&#39;Diagonal detail&#39;</span><span class="p">]</span>
+<span class="n">coeffs2</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">dwt2</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="s1">&#39;bior1.3&#39;</span><span class="p">)</span>
+<span class="n">LL</span><span class="p">,</span> <span class="p">(</span><span class="n">LH</span><span class="p">,</span> <span class="n">HL</span><span class="p">,</span> <span class="n">HH</span><span class="p">)</span> <span class="o">=</span> <span class="n">coeffs2</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">LL</span><span class="p">,</span> <span class="n">LH</span><span class="p">,</span> <span class="n">HL</span><span class="p">,</span> <span class="n">HH</span><span class="p">]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">pywt</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">pywt.data</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Load image</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pywt&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="homeworks-denoising">
+<h2>Homeworks: Denoising<a class="headerlink" href="#homeworks-denoising" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Denoising with Haar 1-D</p></li>
+<li><p>Denoising with Haar 2-D</p></li>
+</ul>
+<section id="examples-of-orthogonal-sets">
+<h3>Examples of Orthogonal Sets<a class="headerlink" href="#examples-of-orthogonal-sets" title="Link to this heading">#</a></h3>
+<p>Several examples of orthogonal sets on continuous signals are as follows:</p>
+<p><strong>Example 1: Set of sinusoidal functions with different frequencies:</strong>
+$<span class="math notranslate nohighlight">\( \psi = \{ \sin(kt) ; k \in \mathbb{Z} \} \)</span>$</p>
+<p>To solve this example, two steps need to be taken:</p>
+<ol class="arabic simple">
+<li><p>Verify orthogonality:
+$<span class="math notranslate nohighlight">\( \langle \phi_k(t), \phi_l(t) \rangle \text{ for } k \neq l \)</span>$</p></li>
+<li><p>Calculate energy:
+$<span class="math notranslate nohighlight">\( \langle \phi_k(t), \phi_l(t) \rangle \text{ for } k = l \)</span>$</p></li>
+</ol>
+<p>If the first step yields zero, the set is orthogonal. The second step determines the energy.</p>
+<p><strong>Orthogonality Check:</strong>
+$<span class="math notranslate nohighlight">\( \langle \sin(kt), \sin(lt) \rangle = \int_T \sin(kt) \cdot \sin(lt) \, dt = \int_T \frac{1}{2} \left[ \cos((k - l)t) - \cos((k + l)t) \right] dt \)</span>$</p>
+<p>The area under the curves of <span class="math notranslate nohighlight">\( \cos((k - l)t) \)</span> and <span class="math notranslate nohighlight">\( \cos((k + l)t) \)</span> over one period is zero, so the integral evaluates to zero. Therefore, the set is orthogonal.</p>
+<p><strong>Energy Check:</strong>
+$<span class="math notranslate nohighlight">\( \langle \sin(kt), \sin(kt) \rangle = \int_T \sin^2(kt) \, dt = \int_T \frac{1}{2} \left[ \cos(0) - \cos(2kt) \right] dt = \frac{1}{2} \left[ \int_T 1 \, dt - \int_T \cos(2kt) \, dt \right] = \frac{1}{2} \left( T - 0 \right) = \frac{T}{2} \)</span>$</p>
+<p><strong>Example 2: A more general example:</strong>
+Consider the set:
+$<span class="math notranslate nohighlight">\( \psi = \{ \exp(jk\omega_0 t) ; k \in \mathbb{Z} \} \)</span>$</p>
+<p>Using Euler’s formula:
+$<span class="math notranslate nohighlight">\( \exp(jk\omega_0 t) = \cos(k\omega_0 t) + j \sin(k\omega_0 t) \)</span>$</p>
+<p><strong>Orthogonality and Energy Check:</strong>
+$<span class="math notranslate nohighlight">\( \langle e^{jk\omega_0 t}, e^{jl\omega_0 t} \rangle = \int_T e^{jk\omega_0 t} \cdot (e^{jl\omega_0 t})^* \, dt = \int_T e^{jk\omega_0 t} \cdot e^{-jl\omega_0 t} \, dt = \int_T e^{j\omega_0 t(k - l)} \, dt \)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\( = \int_T \left[ \cos((k - l)\omega_0 t) + j \sin((k - l)\omega_0 t) \right] dt \)</span>$</p>
+<p>The area under the curve of <span class="math notranslate nohighlight">\( \sin((k - l)\omega_0 t) \)</span> is zero. Similarly, for <span class="math notranslate nohighlight">\( \cos((k - l)\omega_0 t) \)</span>, the area is also zero. Therefore, equation (15) equals zero for <span class="math notranslate nohighlight">\( k \neq l \)</span>, confirming orthogonality between different functions.</p>
+<p>For <span class="math notranslate nohighlight">\( k = l \)</span>, to calculate energy:
+$<span class="math notranslate nohighlight">\( \int \cos((k - k)\omega_0 t) \, dt + j \int \sin((k - k)\omega_0 t) \, dt = \int_T 1 \, dt = T \)</span>$</p>
+<p>Thus, equation (15) is completed as:
+$<span class="math notranslate nohighlight">\( \langle e^{jk\omega_0 t}, e^{jl\omega_0 t} \rangle = \begin{cases} 
+T &amp; \text{if } k = l \\
+0 &amp; \text{if } k \neq l 
+\end{cases} \)</span>$</p>
+<p>The result shows that the mentioned set is orthogonal and each term’s energy is <span class="math notranslate nohighlight">\( T \)</span>. To make this set orthonormal, you should select <span class="math notranslate nohighlight">\( \phi_k(t) = \frac{1}{\sqrt{T}} e^{jk\omega_0 t} \)</span>.</p>
+</section>
+<section id="another-orthogonal-function-legendre-polynomials">
+<h3>Another orthogonal function : Legendre Polynomials<a class="headerlink" href="#another-orthogonal-function-legendre-polynomials" title="Link to this heading">#</a></h3>
+<p><strong>Legendre Polynomials</strong> are a sequence of orthogonal polynomials that arise in the solution of Legendre’s differential equation:</p>
+<div class="math notranslate nohighlight">
+\[
+(1 - x^2) \frac{d^2 P_n(x)}{dx^2} - 2x \frac{d P_n(x)}{dx} + n(n + 1) P_n(x) = 0
+\]</div>
+<p>Some key points about Legendre polynomials:</p>
+</section>
+<section id="definition">
+<h3><strong>Definition</strong><a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
+<p>Legendre polynomials <span class="math notranslate nohighlight">\( P_n(x) \)</span> are defined on the interval <span class="math notranslate nohighlight">\([-1, 1]\)</span> and are solutions to the Legendre differential equation.</p>
+</section>
+<section id="orthogonality">
+<h3><strong>Orthogonality</strong><a class="headerlink" href="#orthogonality" title="Link to this heading">#</a></h3>
+<p>The Legendre polynomials <span class="math notranslate nohighlight">\( P_m(x) \)</span> and <span class="math notranslate nohighlight">\( P_n(x) \)</span> are orthogonal over the interval <span class="math notranslate nohighlight">\([-1, 1]\)</span> with the following orthogonality relation:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{-1}^{1} P_m(x) P_n(x) \, dx = \frac{2}{2n + 1} \delta_{mn}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( \delta_{mn} \)</span> is the Kronecker delta, which is 1 if <span class="math notranslate nohighlight">\( m = n \)</span> and 0 otherwise.</p>
+</section>
+<section id="normalization">
+<h3><strong>Normalization</strong><a class="headerlink" href="#normalization" title="Link to this heading">#</a></h3>
+<p>Legendre polynomials are usually normalized such that:</p>
+<div class="math notranslate nohighlight">
+\[
+P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} \left[ (x^2 - 1)^n \right]
+\]</div>
+</section>
+<section id="first-few-legendre-polynomials">
+<h3><strong>First Few Legendre Polynomials</strong><a class="headerlink" href="#first-few-legendre-polynomials" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\( P_0(x) \)</span></strong>: <span class="math notranslate nohighlight">\( 1 \)</span></p></li>
+<li><p><strong><span class="math notranslate nohighlight">\( P_1(x) \)</span></strong>: <span class="math notranslate nohighlight">\( x \)</span></p></li>
+<li><p><strong><span class="math notranslate nohighlight">\( P_2(x) \)</span></strong>: <span class="math notranslate nohighlight">\( \frac{1}{2}(3x^2 - 1) \)</span></p></li>
+<li><p><strong><span class="math notranslate nohighlight">\( P_3(x) \)</span></strong>: <span class="math notranslate nohighlight">\( \frac{1}{2}(5x^3 - 3x) \)</span></p></li>
+</ul>
+</section>
+<section id="properties">
+<h3><strong>Properties</strong><a class="headerlink" href="#properties" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Recurrence Relation</strong>: Legendre polynomials satisfy the recurrence relation:</p>
+<div class="math notranslate nohighlight">
+\[
+  (n + 1) P_{n+1}(x) = (2n + 1) x P_n(x) - n P_{n-1}(x)
+  \]</div>
+</li>
+<li><p><strong>Symmetry</strong>: <span class="math notranslate nohighlight">\( P_n(x) \)</span> are either even or odd functions, depending on whether <span class="math notranslate nohighlight">\( n \)</span> is even or odd, respectively.</p></li>
+<li><p><strong>Completeness</strong>: The set of Legendre polynomials forms a complete orthogonal basis for functions defined on the interval <span class="math notranslate nohighlight">\([-1, 1]\)</span> in the sense of expanding functions in terms of these polynomials.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">legendre</span>
+
+<span class="c1"># Define the range of x values</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Define the number of polynomials to plot</span>
+<span class="n">num_polynomials</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Create a figure for the plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot Legendre polynomials</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_polynomials</span><span class="p">):</span>
+    <span class="n">P_n</span> <span class="o">=</span> <span class="n">legendre</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">P_n</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Legendre Polynomial P_</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">(x)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Legendre Polynomials&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;P_n(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/85182c86d49a2b5fe2d0c97a7bcc599d955f09f458fc3ad61c97906f2e3189b6.png" src="../_images/85182c86d49a2b5fe2d0c97a7bcc599d955f09f458fc3ad61c97906f2e3189b6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">legendre</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+
+<span class="k">def</span> <span class="nf">legendre_integral</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the integral of the product of two Legendre polynomials.&quot;&quot;&quot;</span>
+    <span class="c1"># Get the coefficients of the Legendre polynomials</span>
+    <span class="n">P_m</span> <span class="o">=</span> <span class="n">legendre</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">P_n</span> <span class="o">=</span> <span class="n">legendre</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="c1"># Define the polynomial product function</span>
+    <span class="k">def</span> <span class="nf">poly_product</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">P_m</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">P_n</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># Compute the integral over the interval [-1, 1]</span>
+    <span class="n">integral</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">poly_product</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">integral</span>
+
+<span class="c1"># Define the pairs of m and n to check</span>
+<span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+
+<span class="c1"># Compute and print the results</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+    <span class="n">integral</span> <span class="o">=</span> <span class="n">legendre_integral</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="n">n</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">results</span><span class="p">[(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="n">integral</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
+
+<span class="c1"># Print results</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="n">integral</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Integral of P_</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s1">(x) * P_</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">(x) over [-1, 1]: </span><span class="si">{</span><span class="n">integral</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Expected value: </span><span class="si">{</span><span class="n">expected</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Orthogonality verified&#39;</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">integral</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;Orthogonality NOT verified&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral of P_0(x) * P_0(x) over [-1, 1]: 2.0000
+Expected value: 2.0000
+Orthogonality verified
+
+Integral of P_0(x) * P_1(x) over [-1, 1]: 0.0000
+Expected value: 0.0000
+Orthogonality verified
+
+Integral of P_1(x) * P_1(x) over [-1, 1]: 0.6667
+Expected value: 0.6667
+Orthogonality verified
+
+Integral of P_2(x) * P_2(x) over [-1, 1]: 0.4000
+Expected value: 0.4000
+Orthogonality verified
+
+Integral of P_1(x) * P_2(x) over [-1, 1]: 0.0000
+Expected value: 0.0000
+Orthogonality verified
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./SAS"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="SignalDefinition.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Signal Definition</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Decomposition1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Decomposition</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">An Introduction to Decomposition</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-decomposition">Signal Decomposition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-for-calculating-coefficients">Method for Calculating Coefficients</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-alpha-0">Calculating <span class="math notranslate nohighlight">\( \alpha_0 \)</span>:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-alpha-1">Calculating <span class="math notranslate nohighlight">\( \alpha_1 \)</span>:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-signal-x-t-e-t">Example: Signal <span class="math notranslate nohighlight">\( x(t) = e^t \)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-signal-x-t-sin-t">Example: Signal <span class="math notranslate nohighlight">\( x(t) = \sin(t) \)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Signal Decomposition</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-coefficients">Calculating Coefficients</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basis-functions-and-orthogonal-sets">Basis Functions and Orthogonal Sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-computation-of-coefficients-and-simplifying-the-process">Reducing Computation of Coefficients and Simplifying the Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-5">Figure 5</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#figure-6">Figure 6</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#procedure-for-generating-haar-orthogonal-set">Procedure for Generating Haar Orthogonal Set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#image-with-haar">Image with Haar</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homeworks-denoising">Homeworks: Denoising</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-orthogonal-sets">Examples of Orthogonal Sets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-orthogonal-function-legendre-polynomials">Another orthogonal function : Legendre Polynomials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition"><strong>Definition</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonality"><strong>Orthogonality</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization"><strong>Normalization</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-few-legendre-polynomials"><strong>First Few Legendre Polynomials</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties"><strong>Properties</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr.Hadi Sadoghi Yazdi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 Pattern Recognition Lab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
