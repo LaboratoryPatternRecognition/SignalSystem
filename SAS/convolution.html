@@ -512,9 +512,9 @@ time shift of <span class="math notranslate nohighlight">\(T\)</span>. In this c
 <p><span class="math notranslate nohighlight">\(0 &lt;n-m &lt; n+\infty \)</span></p>
 <p><span class="math notranslate nohighlight">\(u[n]=\sum_{k=0}^{+\infty} \delta[n-k]\)</span></p>
 <p><span class="math notranslate nohighlight">\(n&lt;0\)</span>
-<img src='images/delta_n-k+.jpg' /></p>
+<img alt="delta_n1" src="../_images/delta_n-k%2B.jpg" /></p>
 <p><span class="math notranslate nohighlight">\(n&gt;0\)</span>
-<img src='images/delta_n-k-.jpg' /></p>
+<img alt="delta_n2" src="../_images/delta_n-k-.jpg" /></p>
 </section>
 <section id="the-continuous-unit-impulse-and-unit-step-functions">
 <h2>The Continuous Unit Impulse and Unit Step Functions<a class="headerlink" href="#the-continuous-unit-impulse-and-unit-step-functions" title="Link to this heading">#</a></h2>
@@ -602,7 +602,8 @@ can be expressed as:</p>
 <h3>Example of Response of Linear System to Unit Impulse<a class="headerlink" href="#example-of-response-of-linear-system-to-unit-impulse" title="Link to this heading">#</a></h3>
 <p>The following signal <span class="math notranslate nohighlight">\(x[n]\)</span> is applied as the input to a linear system (<strong>not necessarily time/ shift invariant</strong>)</p>
 <p><img alt="input1" src="../_images/input.jpg" /></p>
-<img src='images/input_delta_responses.jpg'></section>
+<p><img alt="input_delta_res" src="../_images/input_delta_responses.jpg" /></p>
+</section>
 <section id="response-of-linear-system-and-time-invariant-to-unit-impulse">
 <h3>Response of Linear System and Time Invariant to Unit Impulse<a class="headerlink" href="#response-of-linear-system-and-time-invariant-to-unit-impulse" title="Link to this heading">#</a></h3>
 <p>In general, of course, the responses <span class="math notranslate nohighlight">\(h_k[n]\)</span> need not be related to each other for differ
@@ -692,8 +693,14 @@ x[0,2]h[1,-1]+x[1,2]h[0,-1]+x[2,2]h[-1,-1]\)</span></p>
 </section>
 <section id="shape-of-the-convolution-output">
 <h2>Shape of the Convolution Output<a class="headerlink" href="#shape-of-the-convolution-output" title="Link to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(H_{out} =\left \lfloor \frac{ H_{in} +2 \times \text{padding[0]}-\text{dilation[0]} \times(\text{kernel_size}[0]-1)-1}{stride[0]}   +1\right \rfloor\)</span></p>
-<p><span class="math notranslate nohighlight">\(W_{out} =\left \lfloor \frac{ W_{in} +2\times \text{padding[1]}-\text{dilation[1]} \times(\text{kernel_size}[1]-1)-1}{stride[1]}   +1\right \rfloor\)</span></p>
+<div class="math notranslate nohighlight">
+\[  
+H_{out} = \left\lfloor \frac{H_{in} + 2 \times \text{padding}[0] - \text{dilation}[0] \times (\text{kernel\_size}[0] - 1) - 1}{\text{stride}[0]} + 1 \right\rfloor  
+\]</div>
+<div class="math notranslate nohighlight">
+\[  
+W_{out} = \left\lfloor \frac{W_{in} + 2 \times \text{padding}[1] - \text{dilation}[1] \times (\text{kernel\_size}[1] - 1) - 1}{\text{stride}[1]} + 1 \right\rfloor  
+\]</div>
 </section>
 <section id="d-convolution-as-matrix-multiplication">
 <h2>2D Convolution as Matrix Multiplication<a class="headerlink" href="#d-convolution-as-matrix-multiplication" title="Link to this heading">#</a></h2>
@@ -738,16 +745,19 @@ To perform the convolution, we first matrix multiply K with P to get a 9-dimensi
 <section id="using-doubly-block-circulant-matrix">
 <h2>3) Using Doubly Block Circulant Matrix<a class="headerlink" href="#using-doubly-block-circulant-matrix" title="Link to this heading">#</a></h2>
 <p>Let’s say we have a filter <span class="math notranslate nohighlight">\(k\)</span> of size <span class="math notranslate nohighlight">\( m\times m\)</span> and your input data <span class="math notranslate nohighlight">\(\times\)</span> is of size <span class="math notranslate nohighlight">\(n\timesn\)</span>.</p>
-<p><img src='../SAS/images/input.png'>  <img src='../SAS/images/k.png'></p>
+<p><img alt="InpDoubly" src="../_images/input.png" /></p>
+<p><img alt="k_1" src="../_images/k.png" /></p>
 <p>You should unroll <span class="math notranslate nohighlight">\(k\)</span> into a sparse matrix of size <span class="math notranslate nohighlight">\((n-m+1)^2 \times  n^2\)</span>, and unroll x into a long vector <span class="math notranslate nohighlight">\(n^2 \times 1\)</span></p>
-<img src='../SAS/images/conv_mult.png'><img src='../SAS/images/conv_result.png'>
+<p><img alt="conv_multDoubly" src="../_images/conv_mult.png" /></p>
+<p><img alt="conv_resultDoubly" src="../_images/conv_result.png" /></p>
 <p>In the end you should reshape your vector. Convert the resulting vector (which will have a size <span class="math notranslate nohighlight">\((n-m+1)^2 \times 1)\)</span> into a <span class="math notranslate nohighlight">\(n-m+1\)</span> square matrix</p>
 <p>Refs: <a class="reference external" href="https://stackoverflow.com/questions/16798888/2-d-convolution-as-a-matrix-matrix-multiplication">1</a>, <a class="reference external" href="https://dsp.stackexchange.com/questions/35373/2d-convolution-as-a-doubly-block-circulant-matrix-operating-on-a-vector">2</a></p>
 </section>
 <section id="convolution-in-rgb-images">
 <h2>Convolution in RGB Images<a class="headerlink" href="#convolution-in-rgb-images" title="Link to this heading">#</a></h2>
 <p>Number of channels in our image must match the number of channels in our filter, so these two numbers have to be equal. The output of this will be a <span class="math notranslate nohighlight">\(4 \times 4 \times 1\)</span>. We ofetn have <span class="math notranslate nohighlight">\(k\)</span> filters of size <span class="math notranslate nohighlight">\(3\times3\times3\)</span> so the output would be <span class="math notranslate nohighlight">\(k\)</span> images of size <span class="math notranslate nohighlight">\(4 \times 4 \times 1\)</span></p>
-<img src='../SAS/images/06_03.png'/><p><img alt="06_09_1" src="../_images/06_09.png" /></p>
+<p><img alt="Exam06" src="../_images/06_03.png" /></p>
+<p><img alt="06_09_1" src="../_images/06_09.png" /></p>
 <p><img alt="2_Channel_Conv_1" src="../_images/3_channel_conv.gif" /></p>
 <p>Refs: <a class="reference external" href="http://datahacker.rs/convolution-rgb-image/">1</a>, <a class="reference external" href="https://cs231n.github.io/convolutional-networks/#conv">2</a></p>
 </section>
