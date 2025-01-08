@@ -1,0 +1,919 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Linear Time Invariant System &#8212; Dr.Hadi Sadoghi Yazdi</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'SAS/LTI';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Convolution" href="convolution.html" />
+    <link rel="prev" title="System Identification" href="SystemIdentification.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../SignalSystemStart.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Hadi_Sadoghi_Yazdi.png" class="logo__image only-light" alt="Dr.Hadi Sadoghi Yazdi - Home"/>
+    <img src="../_static/Hadi_Sadoghi_Yazdi.png" class="logo__image only-dark pst-js-only" alt="Dr.Hadi Sadoghi Yazdi - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../SignalSystemStart.html">
+                    Signal and System
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Time Domain Signal Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="SignalDefinition.html">Signal Definition</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Decomposition.html">An Introduction to Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decomposition1.html">Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SystemIdentification.html">System Identification</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Time Invariant System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convolution.html">Convolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="causality_stability.html">System Properties</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Suplementaries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="SignalPython_Start.html">Signal Processing with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SignalPython/WhatSignal.html">What Signal</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contact</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Contact_Me.html">Contact Me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../About_Me.html">About Me</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/h-sadoghi/dr-sadoghi.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/h-sadoghi/dr-sadoghi.git/issues/new?title=Issue%20on%20page%20%2FSAS/LTI.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/SAS/LTI.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Linear Time Invariant System</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-invariant-system">Time-Invariant System:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneous-system">Homogeneous System:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additive-system">Additive System:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-system">Linear System:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lti-system">LTI System:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenfunctions-of-lti-systems">Eigenfunctions of LTI Systems:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducing-a-few-examples-of-the-system">Introducing a few examples of the system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#electrical-circuits">1. <strong>Electrical Circuits</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-signal-processing">2. <strong>Audio Signal Processing</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-systems">3. <strong>Control Systems</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanical-systems">4. <strong>Mechanical Systems</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optical-systems">5. <strong>Optical Systems</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanical-vibrations-in-structures">6. <strong>Mechanical Vibrations in Structures</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#communication-systems">7. <strong>Communication Systems</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-amplification">8. <strong>Signal Amplification</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lti-system-and-machine-learning">LTI system and Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">1. <strong>Linear Regression</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-neural-networks-cnns-for-image-processing">2. <strong>Convolutional Neural Networks (CNNs) for Image Processing</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kalman-filters-in-time-series-forecasting">3. <strong>Kalman Filters (in Time Series Forecasting)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders-for-dimensionality-reduction">4. <strong>Autoencoders for Dimensionality Reduction</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-analysis-pca">5. <strong>Principal Component Analysis (PCA)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machines-svms-with-linear-kernels">6. <strong>Support Vector Machines (SVMs) with Linear Kernels</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recurrent-neural-networks-rnns-with-linear-activation">7. <strong>Recurrent Neural Networks (RNNs) with Linear Activation</strong></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-time-invariant-system">
+<h1>Linear Time Invariant System<a class="headerlink" href="#linear-time-invariant-system" title="Link to this heading">#</a></h1>
+<section id="time-invariant-system">
+<h2>Time-Invariant System:<a class="headerlink" href="#time-invariant-system" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\delta_\Delta (t) \to h_\Delta (t)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\delta_\Delta (t-\tau) \to h_\Delta (t-\tau)
+\]</div>
+<p>For example, if you give your friend chocolate and they smile, and you repeat the same action the next day with the same result, you can conclude that your friend is a time-invariant system.</p>
+<section id="homogeneous-system">
+<h3>Homogeneous System:<a class="headerlink" href="#homogeneous-system" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\delta_\Delta (t-k\Delta) \to h_\Delta (t-k\Delta)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+X(k\Delta) \delta_\Delta (t-k\Delta) \to x(k\Delta) h_\Delta (t-k\Delta)
+\]</div>
+<p>An example of this is a sound amplifier: if you input a signal, it produces an output, and if you increase the amplitude of the input signal, the output amplitude increases proportionally.</p>
+</section>
+<section id="additive-system">
+<h3>Additive System:<a class="headerlink" href="#additive-system" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+x_1(t) \to y_1(t)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x_2(t) \to y_2(t)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x_1(t) + x_2(t) \to y_1(t) + y_2(t)
+\]</div>
+</section>
+<section id="linear-system">
+<h3>Linear System:<a class="headerlink" href="#linear-system" title="Link to this heading">#</a></h3>
+<p>If a system is both homogeneous and additive, it is called a linear system.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+x_1(t) &amp;\to y_1(t) \\
+x_2(t) &amp;\to y_2(t) \\
+x_1(t) + x_2(t) &amp;\to y_1(t) + y_2(t) \\
+a x_1(t) &amp;\to a y_1(t) \\
+a x_1(t) + b x_2(t) &amp;\to a y_1(t) + b y_2(t)
+\end{aligned}
+\end{split}\]</div>
+<p><strong>Example:</strong><br />
+A continuous-time linear system <span class="math notranslate nohighlight">\( S \)</span> with input <span class="math notranslate nohighlight">\( x(t) \)</span> and output <span class="math notranslate nohighlight">\( y(t) \)</span> is described by the following input-output relationship:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = e^{j2t} \to y(t) = e^{j3t}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x(t) = e^{-j2t} \to y(t) = e^{-j3t}
+\]</div>
+<p>a) Compute the output for <span class="math notranslate nohighlight">\( x_1(t) = \cos(2t) \)</span>.<br />
+b) Compute the output for <span class="math notranslate nohighlight">\( x_2(t) = \cos(2(t-\frac{1}{2})) \)</span>.</p>
+<p><strong>Solution:</strong><br />
+a)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+x(t) = e^{j2t} &amp;\to y(t) = e^{j3t} \\
+x(t) = e^{-j2t} &amp;\to y(t) = e^{-j3t}
+\end{aligned}
+\end{split}\]</div>
+<p>Since the system is linear:</p>
+<div class="math notranslate nohighlight">
+\[
+x_1(t) = \frac{1}{2}(e^{j2t} + e^{-j2t}) \to y_1(t) = \frac{1}{2}(e^{j3t} + e^{-j3t})
+\]</div>
+<p>Thus:</p>
+<div class="math notranslate nohighlight">
+\[
+x_1(t) = \cos(2t) \to y_1(t) = \cos(3t)
+\]</div>
+<p>b) We know:</p>
+<div class="math notranslate nohighlight">
+\[
+x_2(t) = \cos(2(t-\frac{1}{2})) = \frac{e^{-j} e^{j2t} + e^{j} e^{-j2t}}{2}
+\]</div>
+<p>Using linearity:</p>
+<div class="math notranslate nohighlight">
+\[
+x_2(t) = \frac{1}{2}(e^{-j} e^{j2t} + e^{j} e^{-j2t}) \to y_2(t) = \frac{1}{2}(e^{-j} e^{j3t} + e^{j} e^{-j3t}) = \cos(3t - 1)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x_2(t) = \cos(2(t-\frac{1}{2})) \to y_2(t) = \cos(3t - 1)
+\]</div>
+</section>
+<section id="lti-system">
+<h3>LTI System:<a class="headerlink" href="#lti-system" title="Link to this heading">#</a></h3>
+<p>The study of signals and systems focuses on linear and time-invariant systems, referred to as LTI systems (Linear Time-Invariant).</p>
+<p>We had it in the previous section,</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = x(0\Delta) \Delta \delta_{\Delta}(t) + x(1\Delta) \Delta \delta_{\Delta}(t - \Delta) + \dots + x(k\Delta) \Delta \delta_{\Delta}(t - k\Delta) + \dots
+\]</div>
+<p>Applying the system’s linearity and time-invariance properties to this input, the output <span class="math notranslate nohighlight">\( y(t) \)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+y(t) = \sum_{k=-\infty}^{\infty} x(k\Delta) \Delta h_\Delta (t - k\Delta).
+\]</div>
+<p>Thus, the output is the convolution of the input coefficients <span class="math notranslate nohighlight">\( x(k\Delta) \)</span> and the system’s impulse response <span class="math notranslate nohighlight">\( h_\Delta(t) \)</span>, scaled by <span class="math notranslate nohighlight">\( \Delta \)</span>.</p>
+<p>Applying the system’s linearity and time-invariance properties to this input, the output <span class="math notranslate nohighlight">\( y(t) \)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+y(t) = \sum_{k=-\infty}^{\infty} x(k\Delta) \Delta h_\Delta (t - k\Delta).
+\]</div>
+<p>As the time steps <span class="math notranslate nohighlight">\( \Delta \)</span> become infinitesimally small, the sum transitions into an integral, leading to the following expression for the output:</p>
+<div class="math notranslate nohighlight">
+\[
+y(t) = \lim_{\Delta \to 0} \sum_{k=-\infty}^{\infty} x(k\Delta) \Delta h_\Delta (t - k\Delta)
+     = \int_{-\infty}^{\infty} x(\tau) h_\Delta (t - \tau) d\tau.
+\]</div>
+<p>Thus, the output becomes the convolution of the input signal <span class="math notranslate nohighlight">\( x(t) \)</span> and the system’s impulse response <span class="math notranslate nohighlight">\( h_\Delta(t) \)</span>, in the limit as <span class="math notranslate nohighlight">\( \Delta \to 0 \)</span>.</p>
+<p><strong>Example:</strong><br />
+Consider a discrete-time LTI system with the following impulse response:</p>
+<div class="math notranslate nohighlight">
+\[
+h[n] = (n+1) a^n u[n], \quad |a| &lt; 1
+\]</div>
+<p>Show that the system’s step response is:</p>
+<div class="math notranslate nohighlight">
+\[
+s[n] = \left[\frac{1}{(a-1)^2} - \frac{a}{(a-1)^2} a^n + \frac{a}{(a-1)} (n+1) a^n \right] u[n]
+\]</div>
+<p><strong>Solution:</strong></p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k=0}^N (k+1) a^k = \frac{d}{da} \sum_{k=0}^{N+1} a^k
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+s[n] = h[n] * u[n]
+\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+s[n] = 
+\begin{cases} 
+\sum_{k=0}^n (1 + k) a^k, &amp; n \geq 0 \\
+0, &amp; \text{otherwise}
+\end{cases}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[
+\sum (k+1) a^k = \frac{d}{d\alpha} \sum_{k=0}^{n+1} a^k = \frac{d}{d\alpha} \left[\frac{1 - \alpha^{n+2}}{1 - \alpha}\right]
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+s[n] = \left[\frac{1 - (n+2) \alpha^{n+1}}{1 - \alpha} \alpha + \frac{1 - \alpha^{n+2}}{1 - \alpha^2}\right] u[n]
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+s[n] = \left[\frac{1}{(1 - \alpha)^2} - \frac{\alpha}{(1 - \alpha)^2} \alpha^n + \frac{\alpha}{1 - \alpha} (n+1) \alpha^n \right] u[n]
+\]</div>
+</section>
+<section id="eigenfunctions-of-lti-systems">
+<h3>Eigenfunctions of LTI Systems:<a class="headerlink" href="#eigenfunctions-of-lti-systems" title="Link to this heading">#</a></h3>
+<p>If an exponential input <span class="math notranslate nohighlight">\( e^{st} \)</span> (where <span class="math notranslate nohighlight">\( s \)</span> is a complex number) is applied to an LTI system, the output will have the same form but with different amplitude and phase. Thus, <span class="math notranslate nohighlight">\( e^{st} \)</span> functions are eigenfunctions of continuous-time LTI systems.</p>
+<p><img alt="EigenFunctionSystem" src="../_images/EigenFunctionSystem.png" /></p>
+<p><strong>Example:</strong><br />
+Which of the following signals are eigenfunctions of continuous-time LTI systems?</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = e^{-t} + e^{-2t}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+g(t) = e^t
+\]</div>
+<p><strong>Solution:</strong><br />
+The signal <span class="math notranslate nohighlight">\( x(t) \)</span> is not an eigenfunction for continuous-time LTI systems because:</p>
+<div class="math notranslate nohighlight">
+\[
+y(t) = \int_{-\infty}^\infty x(t-\tau) h(\tau) d\tau = \int_{-\infty}^\infty \left[e^{-(t-\tau)} + e^{-2(t-\tau)} \right] h(\tau) d\tau
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= e^{-t} \int_{-\infty}^\infty e^\tau h(\tau) d\tau + e^{-2t} \int_{-\infty}^\infty e^{2\tau} h(\tau) d\tau
+\]</div>
+<p>Thus, the output is not in the form <span class="math notranslate nohighlight">\( y(t) = H(s)x(t) \)</span>.</p>
+<p>The signal <span class="math notranslate nohighlight">\( g(t) \)</span> is an eigenfunction because it is in the form <span class="math notranslate nohighlight">\( e^{st} \)</span>.</p>
+</section>
+</section>
+<section id="introducing-a-few-examples-of-the-system">
+<h2>Introducing a few examples of the system<a class="headerlink" href="#introducing-a-few-examples-of-the-system" title="Link to this heading">#</a></h2>
+<p>The system is shown that converts rotational motion into an electrical pulse.</p>
+<p><img alt="SystemReal11" src="../_images/SystemReal1.png" /></p>
+<p>The system is shown that converts heat into a current.</p>
+<p><img alt="SystemReal21" src="../_images/SystemReal2.png" /></p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In the real world, Linear Time-Invariant (LTI) systems do exist, but they are typically an idealization or approximation of real-world systems. LTI systems are widely used in engineering, physics, and signal processing because they are mathematically tractable and can simplify the analysis of complex systems.</p>
+<p>Limitations of Real-World LTI Models:</p>
+<p>Non-linearity: In real-world systems, there are often non-linearities that emerge, especially when inputs are large or components reach their operational limits.
+Time Variance: Some systems, like electronic devices that experience aging, or mechanical systems subject to varying environmental conditions, will exhibit time-varying behavior that makes them non-time-invariant.</p>
+<p>Why LTI Systems Are Useful:</p>
+<p>Mathematical Simplicity: LTI systems are easier to analyze mathematically because they can be described using simple tools like Fourier transforms, Laplace transforms, and convolution.
+Approximation: Many real-world systems behave approximately as LTI systems over certain time periods or operating conditions, allowing engineers to design and analyze these systems effectively.</p>
+<p>A few real-world examples where <strong>Linear Time-Invariant (LTI) systems</strong> provide a good approximation:</p>
+<section id="electrical-circuits">
+<h3>1. <strong>Electrical Circuits</strong><a class="headerlink" href="#electrical-circuits" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>RC (Resistor-Capacitor) Circuits</strong>: An RC circuit, which consists of a resistor and a capacitor, can be modeled as an LTI system. The response to an input signal, such as a step function or sinusoidal signal, can be predicted by using linear differential equations. For small signals, where the components behave linearly (i.e., resistors follow Ohm’s Law, capacitors store energy in a linear fashion), this system is time-invariant as long as the components’ properties do not change over time.</p>
+<ul>
+<li><p><strong>Example</strong>: A simple low-pass or high-pass filter made with resistors and capacitors can be described as an LTI system because the output (voltage across the resistor or capacitor) is linearly related to the input, and the system’s behavior does not change over time.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="audio-signal-processing">
+<h3>2. <strong>Audio Signal Processing</strong><a class="headerlink" href="#audio-signal-processing" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Equalizers and Filters</strong>: In audio systems, equalizers and filters (e.g., low-pass, high-pass, band-pass filters) are often designed as LTI systems. When you apply a sound signal to a filter, the output signal is linearly related to the input, and the system’s characteristics (like the filter’s frequency response) remain the same over time.</p>
+<ul>
+<li><p><strong>Example</strong>: The equalizer on an audio device that amplifies or attenuates different frequency ranges based on preset or user-defined values is an example of an LTI system, as the system behavior is fixed and linear.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="control-systems">
+<h3>3. <strong>Control Systems</strong><a class="headerlink" href="#control-systems" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Temperature Control Systems</strong>: Many temperature regulation systems, like those in thermostats, can be approximated as LTI systems. If the input is a desired temperature (setpoint), the system responds by adjusting the heater or cooling system output linearly. As long as the physical components (like the heater or cooler) behave linearly and the system’s parameters remain constant, it can be considered time-invariant.</p>
+<ul>
+<li><p><strong>Example</strong>: A heating system in a house where the temperature increases proportionally to the power applied and remains steady over time under constant settings can be modeled as an LTI system.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mechanical-systems">
+<h3>4. <strong>Mechanical Systems</strong><a class="headerlink" href="#mechanical-systems" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Mass-Spring-Damper Systems</strong>: A mass-spring-damper system, which consists of a mass, a spring, and a damper, is a well-known example of an LTI system. The system’s response to a force applied to the mass (such as displacement or velocity) is linear as long as the system operates within elastic limits and does not experience large deformations (where non-linear behavior might appear). The system’s damping force is often proportional to the velocity, and the spring force is proportional to the displacement.</p>
+<ul>
+<li><p><strong>Example</strong>: The suspension system of a car, where the displacement of the shock absorbers is linearly related to the input forces (like bumps in the road), is a common approximation to an LTI system.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="optical-systems">
+<h3>5. <strong>Optical Systems</strong><a class="headerlink" href="#optical-systems" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Lenses and Optical Filters</strong>: In optical systems, lenses and optical filters that modify the intensity of light passing through them can be modeled as LTI systems. The relationship between the input (light intensity, wavelength) and the output (light passing through the system) is linear, and if the system’s properties (like the lens’ focal length) do not change over time, the system can be considered time-invariant.</p>
+<ul>
+<li><p><strong>Example</strong>: An optical filter that attenuates light at certain wavelengths while leaving other wavelengths unchanged can be modeled as an LTI system, as the filter’s characteristics remain the same over time.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="mechanical-vibrations-in-structures">
+<h3>6. <strong>Mechanical Vibrations in Structures</strong><a class="headerlink" href="#mechanical-vibrations-in-structures" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Building Vibration Response</strong>: The vibration response of a building or bridge to forces like wind or earthquakes can often be modeled as an LTI system. The system’s response to a given input (like a shock or periodic load) is linear, and as long as the physical properties of the building (such as stiffness and damping) remain constant, the system is time-invariant.</p>
+<ul>
+<li><p><strong>Example</strong>: The oscillations of a suspension bridge in response to periodic wind loads can be approximated by an LTI model, where the output (vibration displacement) is linearly related to the input forces (wind load).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="communication-systems">
+<h3>7. <strong>Communication Systems</strong><a class="headerlink" href="#communication-systems" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Radio and Telephone Systems</strong>: In ideal conditions, radio and telephone systems that transmit signals over a channel (e.g., through air or wires) can be treated as LTI systems. The channel’s response to different frequency components (such as noise, distortion, or attenuation) is linear, and if the channel conditions do not change with time, the system is time-invariant.</p>
+<ul>
+<li><p><strong>Example</strong>: The filtering and amplification of radio signals in a communication system can be modeled as an LTI system, where the output signal is the convolution of the input signal with the system’s impulse response.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="signal-amplification">
+<h3>8. <strong>Signal Amplification</strong><a class="headerlink" href="#signal-amplification" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Operational Amplifiers</strong>: In analog electronics, operational amplifiers (op-amps) are often used in linear circuits. When configured as amplifiers, filters, or integrators, they can be considered LTI systems under ideal conditions.</p>
+<ul>
+<li><p><strong>Example</strong>: An op-amp-based low-pass filter that amplifies the input signal without introducing any time-varying behavior can be modeled as an LTI system.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="lti-system-and-machine-learning">
+<h2>LTI system and Machine Learning<a class="headerlink" href="#lti-system-and-machine-learning" title="Link to this heading">#</a></h2>
+<p>In <strong>Machine Learning (ML)</strong>, <strong>Linear Time-Invariant (LTI) systems</strong> may not always be directly applicable to the real world since many machine learning models involve nonlinearities or time-varying behavior. However, there are certain ML algorithms and models where LTI principles can provide useful approximations or play a role in understanding the dynamics. Here are a few examples:</p>
+<section id="linear-regression">
+<h3>1. <strong>Linear Regression</strong><a class="headerlink" href="#linear-regression" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Description</strong>: In linear regression, the relationship between input features and the target is assumed to be linear, making it a good candidate for an LTI system in terms of its behavior with respect to changes in input features. The model does not change over time (i.e., the system is time-invariant) unless retrained with new data.</p></li>
+<li><p><strong>Example</strong>: Predicting house prices based on features like size, location, and number of bedrooms. If the relationship between input features and the target is linear and remains constant, the model behaves like an LTI system.</p></li>
+</ul>
+</section>
+<section id="convolutional-neural-networks-cnns-for-image-processing">
+<h3>2. <strong>Convolutional Neural Networks (CNNs) for Image Processing</strong><a class="headerlink" href="#convolutional-neural-networks-cnns-for-image-processing" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Description</strong>: In image processing tasks like object detection or classification, <strong>Convolutional Neural Networks (CNNs)</strong> often use filters or kernels that can be thought of as a form of convolution, which is a key operation in LTI systems. The application of a convolutional filter to an image can be modeled as a linear operation, where the output is a weighted sum (or linear combination) of the input pixels, and the filter is time-invariant in the sense that it doesn’t change unless retrained.</p></li>
+<li><p><strong>Example</strong>: In image classification, applying a convolutional layer to an image using a fixed kernel can be considered an approximation of an LTI system because the convolution process is linear and time-invariant as long as the kernel remains fixed during the forward pass.</p></li>
+</ul>
+</section>
+<section id="kalman-filters-in-time-series-forecasting">
+<h3>3. <strong>Kalman Filters (in Time Series Forecasting)</strong><a class="headerlink" href="#kalman-filters-in-time-series-forecasting" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Description</strong>: <strong>Kalman filters</strong> are used in time series forecasting and state estimation, particularly when dealing with noisy observations. Although Kalman filters are not strictly LTI systems, they operate in a manner that closely resembles the behavior of an LTI system, especially when the system dynamics and measurement models are linear and time-invariant.</p></li>
+<li><p><strong>Example</strong>: In robot navigation or object tracking, a Kalman filter is used to predict the state (position, velocity, etc.) of an object over time. The system’s dynamics (such as motion equations) and measurement models (such as sensor readings) are linear and time-invariant, making Kalman filters a good example of an LTI-like system in ML applications.</p></li>
+</ul>
+</section>
+<section id="autoencoders-for-dimensionality-reduction">
+<h3>4. <strong>Autoencoders for Dimensionality Reduction</strong><a class="headerlink" href="#autoencoders-for-dimensionality-reduction" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Description</strong>: <strong>Autoencoders</strong> are neural networks used for unsupervised learning, often for dimensionality reduction or denoising. The encoder-decoder structure used in autoencoders can be considered an LTI system when the weights are fixed (i.e., no training is happening) and the transformation is linear.</p></li>
+<li><p><strong>Example</strong>: In a simple autoencoder with linear activations (like PCA), the transformation from the input space to the latent space and back is linear, which is analogous to an LTI system. In this case, the transformation of data is a linear combination of the input features, and the system is time-invariant if the weights do not change.</p></li>
+</ul>
+</section>
+<section id="principal-component-analysis-pca">
+<h3>5. <strong>Principal Component Analysis (PCA)</strong><a class="headerlink" href="#principal-component-analysis-pca" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Description</strong>: <strong>PCA</strong> is a technique for reducing the dimensionality of data by finding the principal components (eigenvectors) that explain the maximum variance in the data. When the data and transformation are linear (i.e., no nonlinearities or changes over time), PCA can be thought of as an LTI system.</p></li>
+<li><p><strong>Example</strong>: If you apply PCA to a dataset of image features, the transformation is linear, and the principal components remain constant for the dataset, making the system time-invariant. The output is a projection of the input data onto a lower-dimensional subspace, which is analogous to a filtering operation.</p></li>
+</ul>
+</section>
+<section id="support-vector-machines-svms-with-linear-kernels">
+<h3>6. <strong>Support Vector Machines (SVMs) with Linear Kernels</strong><a class="headerlink" href="#support-vector-machines-svms-with-linear-kernels" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Description</strong>: A <strong>Support Vector Machine (SVM)</strong> with a <strong>linear kernel</strong> can be considered an LTI system because the classification boundary is a hyperplane, which is a linear function of the input features. The system’s behavior does not change over time unless retrained with new data, making it time-invariant.</p></li>
+<li><p><strong>Example</strong>: A linear SVM used for binary classification, such as classifying email as spam or not, works by finding a linear decision boundary between the two classes. The system’s behavior is linear and time-invariant as long as the decision boundary remains fixed.</p></li>
+</ul>
+</section>
+<section id="recurrent-neural-networks-rnns-with-linear-activation">
+<h3>7. <strong>Recurrent Neural Networks (RNNs) with Linear Activation</strong><a class="headerlink" href="#recurrent-neural-networks-rnns-with-linear-activation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Description</strong>: While <strong>Recurrent Neural Networks (RNNs)</strong> are typically used for time-series and sequential data, if the activation functions and dynamics of the RNN are linear, it can be viewed as a time-invariant linear system. RNNs with linear activation functions (such as linear units or tanh without nonlinearity) approximate an LTI system.</p></li>
+<li><p><strong>Example</strong>: A simple RNN used for forecasting a time series, where the system dynamics (the weights) do not change over time, can be considered an LTI system in the case of a linear activation function.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./SAS"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="SystemIdentification.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">System Identification</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="convolution.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Convolution</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-invariant-system">Time-Invariant System:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneous-system">Homogeneous System:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additive-system">Additive System:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-system">Linear System:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lti-system">LTI System:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenfunctions-of-lti-systems">Eigenfunctions of LTI Systems:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducing-a-few-examples-of-the-system">Introducing a few examples of the system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#electrical-circuits">1. <strong>Electrical Circuits</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-signal-processing">2. <strong>Audio Signal Processing</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-systems">3. <strong>Control Systems</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanical-systems">4. <strong>Mechanical Systems</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optical-systems">5. <strong>Optical Systems</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanical-vibrations-in-structures">6. <strong>Mechanical Vibrations in Structures</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#communication-systems">7. <strong>Communication Systems</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-amplification">8. <strong>Signal Amplification</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lti-system-and-machine-learning">LTI system and Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">1. <strong>Linear Regression</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-neural-networks-cnns-for-image-processing">2. <strong>Convolutional Neural Networks (CNNs) for Image Processing</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kalman-filters-in-time-series-forecasting">3. <strong>Kalman Filters (in Time Series Forecasting)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders-for-dimensionality-reduction">4. <strong>Autoencoders for Dimensionality Reduction</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-analysis-pca">5. <strong>Principal Component Analysis (PCA)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machines-svms-with-linear-kernels">6. <strong>Support Vector Machines (SVMs) with Linear Kernels</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recurrent-neural-networks-rnns-with-linear-activation">7. <strong>Recurrent Neural Networks (RNNs) with Linear Activation</strong></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr.Hadi Sadoghi Yazdi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 Pattern Recognition Lab.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

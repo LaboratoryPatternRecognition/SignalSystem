@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'SAS/convolution';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Signal Processing with python" href="SignalPython_Start.html" />
-    <link rel="prev" title="System Identification" href="SystemIdentification.html" />
+    <link rel="next" title="System Properties" href="causality_stability.html" />
+    <link rel="prev" title="Linear Time Invariant System" href="LTI.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -178,7 +178,10 @@
 <li class="toctree-l1"><a class="reference internal" href="Decomposition1.html">Decomposition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SystemIdentification.html">System Identification</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="LTI.html">Linear Time Invariant System</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Convolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="causality_stability.html">System Properties</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Suplementaries</span></p>
 <ul class="nav bd-sidenav">
@@ -376,6 +379,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-convolution">1-D Convolution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-1-d-convolution">Discrete 1-D Convolution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties">Key Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-1-d-convolution">Example of 1-D Convolution</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformation-of-the-independent-variable">Transformation of the  Independent Variable</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodic-signals">Periodic Signals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#even-and-odd-signal">Even and Odd Signal</a><ul class="nav section-nav flex-column">
@@ -405,7 +417,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-interpretation">Second Interpretation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-convolution">2D Convolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2D Convolution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separable-convolution-2d">Separable Convolution 2D</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-correlation">Cross Correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-1">Convolution 1</a></li>
@@ -439,6 +451,99 @@ various inputs.</p>
 <p>Examples include the analysis of a circuit in order to quantify its response
 to different voltage and current sources and the determination of an aircraft’s response
 characteristics both to pilot commands and to wind gusts.</p>
+<section id="d-convolution">
+<h2>1-D Convolution<a class="headerlink" href="#d-convolution" title="Link to this heading">#</a></h2>
+<p>1-D convolution is a mathematical operation widely used in fields such as signal processing, image processing, and deep learning. It combines two functions to produce a third function, illustrating how the shape of one function is modified by the other. The convolution of two functions <span class="math notranslate nohighlight">\( f(t) \)</span> and <span class="math notranslate nohighlight">\( g(t) \)</span> is defined as follows:</p>
+<section id="definition">
+<h3>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
+<p>Given two functions <span class="math notranslate nohighlight">\( f(t) \)</span> and <span class="math notranslate nohighlight">\( g(t) \)</span>, the convolution <span class="math notranslate nohighlight">\( (f * g)(t) \)</span> is defined by the integral:</p>
+<div class="math notranslate nohighlight">
+\[
+(f * g)(t) = \int_{-\infty}^{\infty} f(\tau) g(t - \tau) \, d\tau
+\]</div>
+</section>
+<section id="explanation">
+<h3>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Functions</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( f(t) \)</span>: The input function (signal).</p></li>
+<li><p><span class="math notranslate nohighlight">\( g(t) \)</span>: The filter (or kernel) function.</p></li>
+</ul>
+</li>
+<li><p><strong>Variable Change</strong>:</p>
+<ul class="simple">
+<li><p>The variable <span class="math notranslate nohighlight">\( \tau \)</span> serves as a dummy variable for integration.</p></li>
+</ul>
+</li>
+<li><p><strong>Time Reversal</strong>:</p>
+<ul class="simple">
+<li><p>The term <span class="math notranslate nohighlight">\( g(t - \tau) \)</span> represents the filter function <span class="math notranslate nohighlight">\( g(t) \)</span> flipped and shifted by <span class="math notranslate nohighlight">\( t \)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Integration</strong>:</p>
+<ul class="simple">
+<li><p>The integral computes the area under the product of <span class="math notranslate nohighlight">\( f(\tau) \)</span> and <span class="math notranslate nohighlight">\( g(t - \tau) \)</span> across all possible values of <span class="math notranslate nohighlight">\( \tau \)</span>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="discrete-1-d-convolution">
+<h3>Discrete 1-D Convolution<a class="headerlink" href="#discrete-1-d-convolution" title="Link to this heading">#</a></h3>
+<p>For discrete sequences <span class="math notranslate nohighlight">\( f[n] \)</span> and <span class="math notranslate nohighlight">\( g[n] \)</span>, the convolution is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+(f * g)[n] = \sum_{m=-\infty}^{\infty} f[m] g[n - m]
+\]</div>
+</section>
+<section id="key-properties">
+<h3>Key Properties<a class="headerlink" href="#key-properties" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Commutative</strong>:
+$<span class="math notranslate nohighlight">\(
+f * g = g * f
+\)</span>$</p></li>
+<li><p><strong>Associative</strong>:
+$<span class="math notranslate nohighlight">\(
+f * (g * h) = (f * g) * h
+\)</span>$</p></li>
+<li><p><strong>Distributive</strong>:
+$<span class="math notranslate nohighlight">\(
+f * (g + h) = (f * g) + (f * h)
+\)</span>$</p></li>
+<li><p><strong>Identity Element</strong>:
+The identity element for convolution is the Dirac delta function <span class="math notranslate nohighlight">\( \delta(t) \)</span>, such that:
+$<span class="math notranslate nohighlight">\(
+f * \delta = f
+\)</span>$</p></li>
+</ol>
+</section>
+<section id="applications">
+<h3>Applications<a class="headerlink" href="#applications" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Signal Processing</strong>: Filtering signals and detecting features.</p></li>
+<li><p><strong>Image Processing</strong>: Applying filters and kernels for blurring, sharpening, etc.</p></li>
+<li><p><strong>Deep Learning</strong>: Convolutional neural networks (CNNs) use convolution to process data with a grid-like topology, such as images.</p></li>
+</ul>
+</section>
+<section id="example-of-1-d-convolution">
+<h3>Example of 1-D Convolution<a class="headerlink" href="#example-of-1-d-convolution" title="Link to this heading">#</a></h3>
+<p>Consider the following example:</p>
+<p><img alt="Square_Triangle_Conv1_1" src="../_images/Squar_Triangle_Conv1.JPG" /></p>
+<p>The accompanying video demonstrates the operation of 1-D convolution:</p>
+<video width="640" height="480" controls>
+    <source src="../SAS/ImageSAS/triangle_square_conv.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<p>.. video:: ../SAS/ImageSAS/triangle_square_conv.mp4
+:width: 640
+:height: 480
+:controls: true</p>
+<p>See more details in <a class="reference external" href="https://www.algorithm-archive.org/contents/convolutions/1d/1d.html">Convolutions in 1D</a></p>
+<p><a class="reference external" href="https://www.songho.ca/dsp/convolution/convolution.html#decomposition">https://www.songho.ca/dsp/convolution/convolution.html#decomposition</a></p>
+<p><a class="reference external" href="https://www.cs.cornell.edu/courses/cs1114/2013sp/sections/S06_convolution.pdf">https://www.cs.cornell.edu/courses/cs1114/2013sp/sections/S06_convolution.pdf</a></p>
+</section>
+</section>
 <section id="transformation-of-the-independent-variable">
 <h2>Transformation of the  Independent Variable<a class="headerlink" href="#transformation-of-the-independent-variable" title="Link to this heading">#</a></h2>
 <p>It is often of interest to determine the effect of transforming the independent variable
@@ -651,8 +756,8 @@ ent values of <span class="math notranslate nohighlight">\(k\)</span>. However, 
 <p>The lenght of convolution response is: <span class="math notranslate nohighlight">\(m+n-1\)</span></p>
 </section>
 </section>
-<section id="d-convolution">
-<h2>2D Convolution<a class="headerlink" href="#d-convolution" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h2>2D Convolution<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>By convolving both horizontal and vertical directions in a two-dimensional spatial domain, 2D convolution is simply an expansion of prior 1D convolution. Smoothing, sharpening, and edge detection of images are all common applications for convolution.</p>
 <p>The impulse in 2D space is <span class="math notranslate nohighlight">\(\delta[m, n]\)</span> where m and n is zero and zeros at <span class="math notranslate nohighlight">\(m,n \neq 0\)</span>. The impulse response in 2D is usually called <strong>kernel</strong> or <strong>filter</strong> in image processing.</p>
 <p><img alt="conv2d_delta1" src="../_images/conv2d_delta.jpg" /></p>
@@ -822,20 +927,20 @@ H,W\)</span> are the spatial dimensions). Suppose this output is fed into a conv
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="SystemIdentification.html"
+       href="LTI.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">System Identification</p>
+        <p class="prev-next-title">Linear Time Invariant System</p>
       </div>
     </a>
     <a class="right-next"
-       href="SignalPython_Start.html"
+       href="causality_stability.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Signal Processing with python</p>
+        <p class="prev-next-title">System Properties</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -856,6 +961,15 @@ H,W\)</span> are the spatial dimensions). Suppose this output is fed into a conv
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-convolution">1-D Convolution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-1-d-convolution">Discrete 1-D Convolution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties">Key Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-1-d-convolution">Example of 1-D Convolution</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformation-of-the-independent-variable">Transformation of the  Independent Variable</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodic-signals">Periodic Signals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#even-and-odd-signal">Even and Odd Signal</a><ul class="nav section-nav flex-column">
@@ -885,7 +999,7 @@ H,W\)</span> are the spatial dimensions). Suppose this output is fed into a conv
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-interpretation">Second Interpretation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-convolution">2D Convolution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2D Convolution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separable-convolution-2d">Separable Convolution 2D</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-correlation">Cross Correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolution-1">Convolution 1</a></li>

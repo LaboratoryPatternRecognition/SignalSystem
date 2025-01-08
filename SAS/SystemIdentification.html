@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'SAS/SystemIdentification';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Convolution" href="convolution.html" />
+    <link rel="next" title="Linear Time Invariant System" href="LTI.html" />
     <link rel="prev" title="Decomposition" href="Decomposition1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -178,7 +178,10 @@
 <li class="toctree-l1"><a class="reference internal" href="Decomposition1.html">Decomposition</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">System Identification</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="LTI.html">Linear Time Invariant System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convolution.html">Convolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="causality_stability.html">System Properties</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Suplementaries</span></p>
 <ul class="nav bd-sidenav">
@@ -408,15 +411,9 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-shift-example-code">Time shift example code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-scaling-example-code">Time Scaling example code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-reflection-example-code">Time Reflection example code</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Convolution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-1-d-convolution">Discrete 1-D Convolution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties">Key Properties</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-1-d-convolution">Example of 1-D Convolution</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-decomposition-based-on-delta">Example of Decomposition based on Delta</a></li>
 </ul>
 </li>
 </ul>
@@ -981,99 +978,58 @@ R_{xy}(\tau) = \int_{-\infty}^{\infty} x(t) y(t + \tau) \, dt
 </div>
 </div>
 </section>
-<section id="id2">
-<h3>Convolution<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>1-D convolution is a mathematical operation widely used in fields such as signal processing, image processing, and deep learning. It combines two functions to produce a third function, illustrating how the shape of one function is modified by the other. The convolution of two functions <span class="math notranslate nohighlight">\( f(t) \)</span> and <span class="math notranslate nohighlight">\( g(t) \)</span> is defined as follows:</p>
 </section>
-<section id="definition">
-<h3>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
-<p>Given two functions <span class="math notranslate nohighlight">\( f(t) \)</span> and <span class="math notranslate nohighlight">\( g(t) \)</span>, the convolution <span class="math notranslate nohighlight">\( (f * g)(t) \)</span> is defined by the integral:</p>
+<section id="example-of-decomposition-based-on-delta">
+<h2>Example of Decomposition based on Delta<a class="headerlink" href="#example-of-decomposition-based-on-delta" title="Link to this heading">#</a></h2>
+<p>Any signal can be expressed in terms of <span class="math notranslate nohighlight">\( \Delta \delta_{\Delta}(t) \)</span>.</p>
+<p>A problem is designed as follows: express <span class="math notranslate nohighlight">\( x(t) \)</span> in terms of <span class="math notranslate nohighlight">\( \delta_{\Delta}(t - k\Delta) \)</span> according to the following equation:</p>
 <div class="math notranslate nohighlight">
 \[
-(f * g)(t) = \int_{-\infty}^{\infty} f(\tau) g(t - \tau) \, d\tau
+x(t) = \sum_{k \in \mathbb{Z}} a_k \delta_{\Delta}(t - k\Delta)
 \]</div>
-</section>
-<section id="explanation">
-<h3>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>Functions</strong>:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( f(t) \)</span>: The input function (signal).</p></li>
-<li><p><span class="math notranslate nohighlight">\( g(t) \)</span>: The filter (or kernel) function.</p></li>
-</ul>
-</li>
-<li><p><strong>Variable Change</strong>:</p>
-<ul class="simple">
-<li><p>The variable <span class="math notranslate nohighlight">\( \tau \)</span> serves as a dummy variable for integration.</p></li>
-</ul>
-</li>
-<li><p><strong>Time Reversal</strong>:</p>
-<ul class="simple">
-<li><p>The term <span class="math notranslate nohighlight">\( g(t - \tau) \)</span> represents the filter function <span class="math notranslate nohighlight">\( g(t) \)</span> flipped and shifted by <span class="math notranslate nohighlight">\( t \)</span>.</p></li>
-</ul>
-</li>
-<li><p><strong>Integration</strong>:</p>
-<ul class="simple">
-<li><p>The integral computes the area under the product of <span class="math notranslate nohighlight">\( f(\tau) \)</span> and <span class="math notranslate nohighlight">\( g(t - \tau) \)</span> across all possible values of <span class="math notranslate nohighlight">\( \tau \)</span>.</p></li>
-</ul>
-</li>
-</ol>
-</section>
-<section id="discrete-1-d-convolution">
-<h3>Discrete 1-D Convolution<a class="headerlink" href="#discrete-1-d-convolution" title="Link to this heading">#</a></h3>
-<p>For discrete sequences <span class="math notranslate nohighlight">\( f[n] \)</span> and <span class="math notranslate nohighlight">\( g[n] \)</span>, the convolution is defined as:</p>
+<p>With a little attention, we realize that this is a decomposition problem.</p>
+<p><strong>Step 1:</strong> Is the set orthogonal?</p>
+<p>The shape of these signals can be seen in following Figure. As is evident in the figure, these signals are orthogonal to each other.</p>
+<p><img alt="DeltaShift1" src="../_images/DeltaShift.jpg" /></p>
+<p>Now, the energy of these signals is calculated:</p>
 <div class="math notranslate nohighlight">
 \[
-(f * g)[n] = \sum_{m=-\infty}^{\infty} f[m] g[n - m]
+E_{\phi_k} = \int_{k\Delta}^{(k+1)\Delta} \delta_{\Delta}(t - k\Delta) \delta_{\Delta}(t - k\Delta) \, dt = \frac{1}{\Delta} \cdot \frac{1}{\Delta} \cdot t \Big|_{k\Delta}^{(k+1)\Delta} = \frac{1}{\Delta^2} \cdot \big((k+1)\Delta - k\Delta\big) = \frac{1}{\Delta}
 \]</div>
-</section>
-<section id="key-properties">
-<h3>Key Properties<a class="headerlink" href="#key-properties" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>Commutative</strong>:
-$<span class="math notranslate nohighlight">\(
-f * g = g * f
-\)</span>$</p></li>
-<li><p><strong>Associative</strong>:
-$<span class="math notranslate nohighlight">\(
-f * (g * h) = (f * g) * h
-\)</span>$</p></li>
-<li><p><strong>Distributive</strong>:
-$<span class="math notranslate nohighlight">\(
-f * (g + h) = (f * g) + (f * h)
-\)</span>$</p></li>
-<li><p><strong>Identity Element</strong>:
-The identity element for convolution is the Dirac delta function <span class="math notranslate nohighlight">\( \delta(t) \)</span>, such that:
-$<span class="math notranslate nohighlight">\(
-f * \delta = f
-\)</span>$</p></li>
-</ol>
-</section>
-<section id="applications">
-<h3>Applications<a class="headerlink" href="#applications" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Signal Processing</strong>: Filtering signals and detecting features.</p></li>
-<li><p><strong>Image Processing</strong>: Applying filters and kernels for blurring, sharpening, etc.</p></li>
-<li><p><strong>Deep Learning</strong>: Convolutional neural networks (CNNs) use convolution to process data with a grid-like topology, such as images.</p></li>
-</ul>
-</section>
-<section id="example-of-1-d-convolution">
-<h3>Example of 1-D Convolution<a class="headerlink" href="#example-of-1-d-convolution" title="Link to this heading">#</a></h3>
-<p>Consider the following example:</p>
-<p><img alt="Square_Triangle_Conv1_1" src="../_images/Squar_Triangle_Conv1.JPG" /></p>
-<p>The accompanying video demonstrates the operation of 1-D convolution:</p>
-<video width="640" height="480" controls>
-    <source src="../SAS/ImageSAS/triangle_square_conv.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-<p>.. video:: ../SAS/ImageSAS/triangle_square_conv.mp4
-:width: 640
-:height: 480
-:controls: true</p>
-<p>See more details in <a class="reference external" href="https://www.algorithm-archive.org/contents/convolutions/1d/1d.html">Convolutions in 1D</a></p>
-<p><a class="reference external" href="https://www.songho.ca/dsp/convolution/convolution.html#decomposition">https://www.songho.ca/dsp/convolution/convolution.html#decomposition</a></p>
-<p><a class="reference external" href="https://www.cs.cornell.edu/courses/cs1114/2013sp/sections/S06_convolution.pdf">https://www.cs.cornell.edu/courses/cs1114/2013sp/sections/S06_convolution.pdf</a></p>
-</section>
+<p>Thus, the coefficients can be calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+a_k = \frac{1}{E_{\phi_k}} \langle x(t), \delta_{\Delta}(t - k\Delta) \rangle = \frac{1}{\frac{1}{\Delta}} \int x(t) \delta_{\Delta}(t - k\Delta) \, dt \tag{Equation 15}
+\]</div>
+<p>Assume that the value of <span class="math notranslate nohighlight">\( \Delta \)</span> is very small and approaches zero, and a signal <span class="math notranslate nohighlight">\( x(t) \)</span> exists as shown below (Figure ).</p>
+<p><img alt="Signal_Delta_Construction1" src="../_images/Signal_Delta_Construction.png" /></p>
+<p>Given these assumptions, Equation 15 can be approximated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{\frac{1}{\Delta}} \int x(k\Delta) \delta_{\Delta}(t - k\Delta) \, dt = \Delta x(k\Delta) \int \delta_{\Delta}(t - k\Delta) \, dt = \Delta x(k\Delta)
+\]</div>
+<p>In other words, the signal <span class="math notranslate nohighlight">\( x(t) \)</span> was decomposed as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = \sum_{k \in \mathbb{Z}} \Delta x(k\Delta) \delta_{\Delta}(t - k\Delta) \tag{Equation 16}
+\]</div>
+<p>This equation is very important and widely used. Its limiting form is:</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{\Delta \to 0} \sum \Delta x(k\Delta) \delta_{\Delta}(t - k\Delta) = \int x(\tau) \delta(t - \tau) \, d\tau \tag{Equation 17}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( \tau = k\Delta \)</span> as <span class="math notranslate nohighlight">\( \Delta \)</span> approaches <span class="math notranslate nohighlight">\( d\tau \)</span>.</p>
+<p>Thus, any signal can be represented as a sum of rectangles using Equation 16. For example, this process was performed in following Figure :</p>
+<p><img alt="x_Delta_Construct1" src="../_images/x_Delta_Construct.png" /></p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = x(0\Delta) \Delta \delta_{\Delta}(t) + x(1\Delta) \Delta \delta_{\Delta}(t - \Delta) + \dots + x(k\Delta) \Delta \delta_{\Delta}(t - k\Delta) + \dots
+\]</div>
+<p>In most textbooks, the above equation is presented visually, but we derived it based on the rules of signal decomposition into orthogonal functions from the set <span class="math notranslate nohighlight">\( \psi = \{ \delta_{\Delta}(t - k\Delta); k \in \mathbb{Z} \} \)</span>.</p>
+<p>It should be noted that this is an approximation of the original signal because the number of terms is finite.</p>
+<p>So far, we have realized that any signal can be written based on an orthogonal set. But why was this done? First, the signal <span class="math notranslate nohighlight">\( x(t) \)</span> was decomposed in the form of Equation 16, and now, using Equation 16, we want to find the system’s response to the components of <span class="math notranslate nohighlight">\( x(t) \)</span>, which are <span class="math notranslate nohighlight">\( \delta_{\Delta}(t - k\Delta) \)</span>. Given the LTI nature of the system, we find the response to the entire signal. In other words, if the system’s response to <span class="math notranslate nohighlight">\( \delta_{\Delta}(t - k\Delta) \)</span> is obtained and named <span class="math notranslate nohighlight">\( h_{\Delta}(t - k\Delta) \)</span>, we need a relation to express the response to <span class="math notranslate nohighlight">\( x(t) \)</span> in terms of <span class="math notranslate nohighlight">\( h_{\Delta}(t - k\Delta) \)</span> and <span class="math notranslate nohighlight">\( x(t) \)</span>.</p>
+<p>To achieve this, an additional introduction is necessary.</p>
+<p>If we focus on specific systems—systems that allow us to determine the response <span class="math notranslate nohighlight">\( h_{\Delta}(t) \)</span> from <span class="math notranslate nohighlight">\( \delta_{\Delta}(t) \)</span> and then infer the response <span class="math notranslate nohighlight">\( h_{\Delta}(t - \tau) \)</span>—such systems are called time-invariant systems. In the following, we will discuss some properties of systems.</p>
 </section>
 </section>
 
@@ -1117,11 +1073,11 @@ f * \delta = f
       </div>
     </a>
     <a class="right-next"
-       href="convolution.html"
+       href="LTI.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Convolution</p>
+        <p class="prev-next-title">Linear Time Invariant System</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1174,15 +1130,9 @@ f * \delta = f
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-shift-example-code">Time shift example code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-scaling-example-code">Time Scaling example code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-reflection-example-code">Time Reflection example code</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Convolution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">Explanation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-1-d-convolution">Discrete 1-D Convolution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-properties">Key Properties</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-1-d-convolution">Example of 1-D Convolution</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-decomposition-based-on-delta">Example of Decomposition based on Delta</a></li>
 </ul>
 </li>
 </ul>
